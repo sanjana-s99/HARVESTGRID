@@ -49,7 +49,7 @@
             $query = "INSERT into users (user_nic, user_name, user_password, user_email, user_tp, user_gender, user_age ,user_crop, user_lat, user_lng) VALUES ('$user_nic' , '$user_name', '$user_password' , '$user_email', '$user_tp', '$user_gender' , '$user_age', '$user_crop', '$user_lat' , '$user_lng')"; //adding values to users table
             $result = mysqli_query($con,$query);
             if($result){            
-                //mailsend();
+                mailsend();
                 $val=2;
                 setcookie("harvestgrid_user_name", $user_name, time()+100000, "/","", 0); //set cookie to store user_name            
             }
@@ -101,7 +101,7 @@
                                 location.reload();
                                 myFunction();
                             }else{
-                                window.location.href = 'http://www.weuse.work/';
+                                window.location.href = 'localhost/harvestgrid/';
                             }
                         })
                     };
@@ -116,20 +116,20 @@
         global $key;
         
         $expFormat = mktime(date("H"), date("i"), date("s"), date("m")  , date("d")+1, date("Y"));
-                        $expDate = date("Y-m-d H:i:s",$expFormat);
-                        $key = md5(2418*2+$user_email);
-                        $addKey = substr(md5(uniqid(rand(),1)),3,10);
-                        $key = $key . $addKey;
-                        $query = "INSERT INTO `password_reset_temp` (`email`, `key`, `expDate`)
-                    VALUES ('$user_email', '$key', '$expDate');";
-                    // Insert Temp Table
-                    
-                    mysqli_query($con, $query);
-                    verify();
+        $expDate = date("Y-m-d H:i:s",$expFormat);
+        //generate a security key
+        $key = md5((2418*2) . $user_email);
+        $addKey = substr(md5(uniqid(rand(),1)),3,10);
+        $key = $key . $addKey;
+        echo $key;
+        $query = "INSERT INTO verify (email, skey, expDate) VALUES ('$user_email', '$key', '$expDate');";
+        // Insert Temp Table        
+        mysqli_query($con, $query);
+        send();
                             
     }   
 
-    function verify(){
+    function send(){
         global $user_email;
         global $key;
         global $user_name;
@@ -137,17 +137,17 @@
         $output='<p>Dear '.$user_name.',</p>';
         $output.='<p>Please click on the following link to verify your email.</p>';
         $output.='<p>-------------------------------------------------------------</p>';
-        $output.='<p><a href="https://www.weuse.work/pages/misc/confirmed.php?key='.$key.'&email='.$user_email.'&action=verify" target="_blank">https://www.weuse.work/pages/misc/confirmed.php?key='.$key.'&email='.$user_email.'&action=verify</a></p>';		
+        $output.='<p><a href="localhost/harvestgrid/pages/misc/confirmed.php?key='.$key.'&email='.$user_email.'&action=verify" target="_blank">Click Me!!</a></p>';		
         $output.='<p>-------------------------------------------------------------</p>';
         $output.='<p>Please be sure to copy the entire link onto your browser. The link will expire after 1 day for security reasons.</p>';
         $output.='<p>If you did not signup, ignore this email.</p>';   	
         $output.='<p>Thanks,</p>';
         $output.='<p>Weuse Team</p>';
         $body = $output; 
-        $subject = "Verify Email - weuse.com";
+        $subject = "Verify Email - harvestgrid.com";
                         
         $email_to = $user_email;
-        $fromserver = "noreply@yourwebsite.com"; 
+        $fromserver = "noreply@harvestgrid.com"; 
         require("../phpmailer/PHPMailerAutoload.php");
         $mail = new PHPMailer();
         $mail->IsSMTP();
@@ -157,8 +157,8 @@
         $mail->Password = "lebdkufvlhhmlvvv"; //Enter your passwrod here
         $mail->Port = 587;
         $mail->IsHTML(true);
-        $mail->From = "noreply@yourwebsite.com";
-        $mail->FromName = "Weuse";
+        $mail->From = "noreply@harvestgrid.com";
+        $mail->FromName = "HARVESTGRID";
         $mail->Sender = $fromserver; // indicates ReturnPath header
         $mail->Subject = $subject;
         $mail->Body = $body;
