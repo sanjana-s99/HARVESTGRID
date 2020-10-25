@@ -10,6 +10,7 @@
         $user_name = stripslashes($_REQUEST['user_name']); 
         $user_name = mysqli_real_escape_string($con,$user_name); //escapes special characters in a string
         $user_email = stripslashes($_REQUEST['user_email']);
+        $user_tp = stripslashes($_REQUEST['user_tp']);
         $user_email = mysqli_real_escape_string($con,$user_email);
         $user_password = stripslashes($_REQUEST['user_password']);
         $user_password = mysqli_real_escape_string($con,$user_password);
@@ -45,13 +46,12 @@
             $val=1;
         }else{
             
-            $query = "INSERT into users (user_nic, user_name, user_password, user_email, user_gender, user_age ,user_crop, user_lat, user_lng) VALUES ('$user_nic' , '$user_name', '$user_password' , '$user_email', '$user_gender' , '$user_age', '$user_crop', '$user_lat' , '$user_lng')"; //adding values to users table
+            $query = "INSERT into users (user_nic, user_name, user_password, user_email, user_tp, user_gender, user_age ,user_crop, user_lat, user_lng) VALUES ('$user_nic' , '$user_name', '$user_password' , '$user_email', '$user_tp', '$user_gender' , '$user_age', '$user_crop', '$user_lat' , '$user_lng')"; //adding values to users table
             $result = mysqli_query($con,$query);
             if($result){            
                 //mailsend();
                 $val=2;
-                setcookie("wdp_user_name", $user_name, time()+100000, "/","", 0); //set cookie to store user_name
-            
+                setcookie("harvestgrid_user_name", $user_name, time()+100000, "/","", 0); //set cookie to store user_name            
             }
         }
     }
