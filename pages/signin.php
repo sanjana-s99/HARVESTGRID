@@ -1,6 +1,5 @@
 <?php
-    include "../includes/signup.php";
-    session_start(); 
+    include "../includes/signin.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
