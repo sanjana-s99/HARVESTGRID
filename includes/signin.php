@@ -16,7 +16,7 @@ require('db.php');
         $row = mysqli_fetch_assoc($result);
 		$rows = mysqli_num_rows($result);
         if($rows==1){
-			$_SESSION['username'] = $row['user_name']; //assign session user_name value
+			$_SESSION['username'] =  strstr($row['user_name'], " ", "true"); //assign session user_name value
             setcookie("harvestgrid_user_name", $row['user_name'], time()+100000, "/","", 0); //set cookie to store user_name
             header("Location: ../index.php"); // Redirect user to index.php
             }else{

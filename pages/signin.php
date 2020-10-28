@@ -3,13 +3,17 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!--weuse-styles-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign In</title>
+
+    <!-- Main css -->
+    <link href="../assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <script>
         // Disable form submissions if there are invalid fields
         (function() {
@@ -30,41 +34,107 @@
         }, false);
         })();
     </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6XkaPZ0poj76FV4fvv39OPnVHeFKV8C0"></script>
-    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
-    <style type="text/css"> #map {width: 50%; height: 480px;} </style>
-    <title>weuse signup</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: aliceblue
+        }
+
+        .wrapper {
+            padding: 30px 50px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            margin: 10px auto;
+            max-width: 600px
+        }
+
+        label {
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: #777;
+            padding-left: 3px
+        }
+
+        .form-control {
+            border-radius: 10px
+        }
+
+
+        .form-control:focus {
+            box-shadow: none;
+            border: 1.5px solid #0779e4
+        }
+
+        select {
+            display: block;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            height: 40px;
+            padding: 5px 10px
+        }
+
+        select:focus {
+            outline: none
+        }
+
+        .button {
+            background-color: #fff;
+            color: #0779e4
+        }
+
+        .button:hover {
+            background-color: #0779e4;
+            color: #fff
+        }
+    </style>
 </head>
 
 <body>
+    <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
 
-    <div class="container">
-        <br><br>
-        <form action="" class="needs-validation" method="post" novalidate>
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="index.html"><span>HarvestGrid</span></a></h1>
+      </div>
 
-        <div class="form-group">
-            <label for="email">Email Address:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter Email" id="user_email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Please enter valid email address.</div>
-        </div>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="signup.php">Register</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
 
-
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="user_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>        
-    <?php show(); ?>
     </div>
+  </header><!-- End Header -->
+  <br><br><br><br><br><br>
+<div class="wrapper bg-white mt-sm-5">
+    <h4 class="pb-4 border-bottom">HarvestGrid Sign-In</h4>
+    <form action="" class="needs-validation" method="post" novalidate>
+        <div class="py-2">
+            <div class="row py-2 form-group">
+                <label for="email">Email Address:</label>
+                <input type="text" class="form-control" id="email" placeholder="Enter Email" id="user_email" name="user_email" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please enter valid email address.</div>
+            </div>
+            <div class="row py-2 form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="user_password" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+            </div>
+        </div>
+        <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Submit</button></div>
+        </div>
+        <?php //show(); ?>
+    </form>
+</div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
-
 </html>
