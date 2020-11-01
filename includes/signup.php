@@ -14,6 +14,7 @@
         $user_email = mysqli_real_escape_string($con,$user_email);
         $user_password = stripslashes($_REQUEST['user_password']);
         $user_password = mysqli_real_escape_string($con,$user_password);
+        $user_password = password_hash($user_password, PASSWORD_DEFAULT);
         $user_crop = stripslashes($_REQUEST['crop']);
         $user_lat = $_REQUEST['lat'];
         $user_lng = $_REQUEST['lng'];
@@ -101,7 +102,7 @@
                                 location.reload();
                                 myFunction();
                             }else{
-                                window.location.href = 'localhost/harvestgrid/';
+                                window.location.href = '../';
                             }
                         })
                     };

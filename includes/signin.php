@@ -11,17 +11,23 @@ require('db.php');
 		$user_password = mysqli_real_escape_string($con,$user_password);
 		
 	//Checking is user existing in the database or not
-        $query = "SELECT * FROM users WHERE user_email='$user_email' AND user_password='$user_password'";
+        $query = "SELECT * FROM users WHERE user_email='$user_email'";
         $result = mysqli_query($con,$query) or die(mysql_error());
         $row = mysqli_fetch_assoc($result);
-		$rows = mysqli_num_rows($result);
-        if($rows==1){
-			$_SESSION['username'] =  strstr($row['user_name'], " ", "true"); //assign session user_name value
+		//$rows = mysqli_num_rows($result);
+        //if($rows==1){
+        if(password_verify($user_password, $row["user_password"])){
+            $_SESSION['username'] =  strstr($row['user_name'], " ", "true"); //assign session user_name value
+            $_SESSION['user_id'] =  $row['user_id']; //assign session user_id value
+            $sub_query = "INSERT INTO login_details (user_id) VALUES ('".$row['user_id']."')";
+            mysqli_query($con,$sub_query);
+            $_SESSION['login_details_id'] = mysqli_insert_id($con);
+            echo $_SESSION['login_details_id'];
             setcookie("harvestgrid_user_name", $row['user_name'], time()+100000, "/","", 0); //set cookie to store user_name
             header("Location: ../index.php"); // Redirect user to index.php
-            }else{
-                $val = 100;
-				}
+        }else{
+            $val = 100;
+		}
     }
 
 function show(){

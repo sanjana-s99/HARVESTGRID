@@ -7,7 +7,7 @@ include('database_connection.php');
 session_start();
 
 $query = "
-SELECT * FROM login 
+SELECT * FROM users 
 WHERE user_id != '".$_SESSION['user_id']."' 
 ";
 
@@ -42,9 +42,9 @@ foreach($result as $row)
 	}
 	$output .= '
 	<tr>
-		<td>'.$row['username'].' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
+		<td>'.$row['user_name'].' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
 		<td>'.$status.'</td>
-		<td><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$row['user_id'].'" data-tousername="'.$row['username'].'">Start Chat</button></td>
+		<td><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$row['user_id'].'" data-tousername="'.$row['user_name'].'">Start Chat</button></td>
 	</tr>
 	';
 }

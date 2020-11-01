@@ -10,7 +10,7 @@ session_start();
 
 if(!isset($_SESSION['user_id']))
 {
-	header("location:login.php");
+	header("location:../pages/signin.php");
 }
 
 ?>
@@ -44,7 +44,7 @@ if(!isset($_SESSION['user_id']))
 					<button type="button" name="group_chat" id="group_chat" class="btn btn-warning btn-xs">Group Chat</button>
 				</div>
 				<div class="col-md-2 col-sm-3">
-					<p align="right">Hi - <?php echo $_SESSION['username']; ?> - <a href="logout.php">Logout</a></p>
+					<p align="right">Hi - <?php echo $_SESSION['username']; ?> - <a href="../includes/signout.php">Signout</a></p>
 				</div>
 			</div>
 			<div class="table-responsive">
