@@ -8,7 +8,7 @@ session_start();
 
 $query = "
 SELECT * FROM users 
-WHERE user_id != '".$_SESSION['user_id']."' AND user_role = 'F'
+WHERE user_id != '".$_SESSION['user_id']."'
 ";
 
 $statement = $connect->prepare($query);
