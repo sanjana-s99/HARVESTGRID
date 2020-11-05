@@ -8,7 +8,7 @@ session_start();
 
 $query = "
 SELECT * FROM users 
-WHERE user_id != '".$_SESSION['user_id']."' 
+WHERE user_id != '".$_SESSION['user_id']."'
 ";
 
 $statement = $connect->prepare($query);
@@ -21,8 +21,8 @@ $output = '
 <table class="table table-bordered table-striped">
 	<tr>
 		<th width="70%">Username</td>
-		<th width="20%">Status</td>
-		<th width="10%">Action</td>
+		<th width="18%">Crop Type</td>
+		<th width="12%">Action</td>
 	</tr>
 ';
 
@@ -34,16 +34,12 @@ foreach($result as $row)
 	$user_last_activity = fetch_user_last_activity($row['user_id'], $connect);
 	if($user_last_activity > $current_timestamp)
 	{
-		$status = '<span class="label label-success">Online</span>';
-	}
-	else
-	{
-		$status = '<span class="label label-danger">Offline</span>';
+		$status = '<span class="badge badge-pill badge-success"> </span>';
 	}
 	$output .= '
 	<tr>
-		<td>'.$row['user_name'].' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
-		<td>'.$status.'</td>
+		<td>'.$row['user_name'].' '.$status.' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
+		<td>'.$row['user_crop'].'</td>
 		<td><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$row['user_id'].'" data-tousername="'.$row['user_name'].'">Start Chat</button></td>
 	</tr>
 	';

@@ -1,6 +1,7 @@
 <?php 
     session_start();
     include ("includes/cropcounts.php");
+    include ("includes/db.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,17 +14,16 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
   <!--  Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 
   <!-- Map -->
     <style>
@@ -48,17 +48,18 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>HarvestGrid</span></a></h1>
+        <h1 class="text-light"><a href="index.php"><span>HarvestGrid</span></a></h1>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-            <li class="active"><a href="#index.html">Home</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
+            <?php if(isset($_SESSION['user_role'])){
+                    if($_SESSION['user_role']=="S" || $_SESSION['user_role']=="A"){ ?>
+                      <li><a href="#farmers">Farmer Details</a></li>
+            <?php } }?>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="chatapplication/">Chat</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#pricing">Pricing</a></li>
             <li><a href="#contact">Contact</a></li>
             <li class="drop-down"><a href="">Drop Down</a>
             <ul>
@@ -78,6 +79,7 @@
             </ul>
         </li>
         <?php     if(isset($_SESSION['username'])){ ?>
+            <li><a href="chatapplication/">Chat</a></li>
             <li><a><?php echo "Hi, " . $_SESSION['username']; ?></a></li>
             <li class="get-started"><a href="includes/signout.php">Sign Out</a></li>
         <?php }else{ ?>
@@ -169,6 +171,58 @@
       </div>
   </section><!-- End Counts Section -->
   
+    <?php
+      if(isset($_SESSION['user_role'])){
+        if($_SESSION['user_role']=="S" || $_SESSION['user_role']=="A"){
+
+          $query = "SELECT * FROM users WHERE user_role = 'F'";
+          $result = mysqli_query($con, $query);
+          if(!$result){
+            die("FAILD!!".mysqli_error());
+          }
+    ?>
+          <!-- ======= Farmers Section ======= -->
+          <section id="farmers" class="features">
+            <div class="container">
+              <div class="section-title" data-aos="fade-up">
+                <h2>Farmer Details</h2>
+              </div>
+              <div data-aos="fade-up" data-aos-delay="300">
+                <table class="table table-bordered" id="farmertable" width="100%" cellspacing="0">
+                  <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>Crop Type</th>
+                          <th>Weight</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  <?php
+                    while($row = mysqli_fetch_assoc($result)){
+                        $u0 = $row['user_id'];
+                        $u1 = $row['user_name'];
+                        $u2 = $row['user_crop'];
+                        $u3 = "N/A";
+                        $u4 = "N/A";
+                        echo "<tr>";
+                            echo "<td>{$u1}</td>";
+                            echo "<td>{$u2}</td>";
+                            echo "<td>{$u3}</td>";
+                            echo "<td>{$u4}</td>";
+                            echo "<td><a class='btn btn-info btn-sm' href='pages/farmer.php?farmer_id=$u0'>More Info</a></td>";
+                        echo "</tr>";
+                    }
+                    
+                    ?>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section><!-- End Farmer Section -->
+    <?php } }?>
 
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about">
@@ -365,6 +419,13 @@
   <!--  Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!-- Bootstrap core JavaScript-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
  <!--Google Map Script -->
 
  <script>
@@ -452,6 +513,13 @@
     <script defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6XkaPZ0poj76FV4fvv39OPnVHeFKV8C0&callback=initMap">
     </script>
+
+    <script>
+        $(document).ready(function() {
+              $('#farmertable').DataTable();
+        });
+    </script>
+
 
 </body>
 
