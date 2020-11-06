@@ -136,13 +136,13 @@
             <div class="row py-2">
                 <div class="col-md-6 form-group">
                     <label for="email">Email Address:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter Email" id="user_email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please enter valid email address.</div>
                 </div>
                 <div class="col-md-6 pt-md-0 pt-3 form-group">
                     <label for="tp">Contact Number:</label>
-                    <input type="text" class="form-control" id="tp" placeholder="Enter Contact Number" id="user_tp" name="user_tp" pattern=".{10}" required>
+                    <input type="text" class="form-control" id="tp" placeholder="Enter Contact Number" name="user_tp" pattern=".{10}" required>
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please enter valid phone number.</div>
                 </div>

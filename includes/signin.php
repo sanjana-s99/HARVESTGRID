@@ -17,8 +17,9 @@ require('db.php');
 		//$rows = mysqli_num_rows($result);
         //if($rows==1){
         if(password_verify($user_password, $row["user_password"])){
-            $_SESSION['username'] =  strstr($row['user_name'], " ", "true"); //assign session user_name value
-            $_SESSION['user_id'] =  $row['user_id']; //assign session user_id value
+            $_SESSION['username'] =  strstr($row['user_name'], " ", "true"); //assign session user_name
+            $_SESSION['user_id'] =  $row['user_id']; //assign session user_id
+            $_SESSION['user_role'] =  $row['user_role']; //assign session user_role
             $sub_query = "INSERT INTO login_details (user_id) VALUES ('".$row['user_id']."')";
             mysqli_query($con,$sub_query);
             $_SESSION['login_details_id'] = mysqli_insert_id($con);

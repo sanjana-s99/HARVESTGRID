@@ -38,7 +38,7 @@ foreach($result as $row)
 	}
 	$output .= '
 	<tr>
-		<td>'.$row['user_name'].' '.$status.' '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' '.fetch_is_type_status($row['user_id'], $connect).'</td>
+		<td>'.$row['user_name'].' '.$status.' <div class="badge badge-pill badge-warning"> '.count_unseen_message($row['user_id'], $_SESSION['user_id'], $connect).' </div> '.fetch_is_type_status($row['user_id'], $connect).'</td>
 		<td>'.$row['user_crop'].'</td>
 		<td><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$row['user_id'].'" data-tousername="'.$row['user_name'].'">Start Chat</button></td>
 	</tr>
