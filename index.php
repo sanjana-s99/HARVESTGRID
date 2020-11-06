@@ -41,7 +41,7 @@
 </head>
 
 <body>
-
+  <main>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
@@ -55,27 +55,12 @@
             <li class="active"><a href="index.php">Home</a></li>
             <?php if(isset($_SESSION['user_role'])){
                     if($_SESSION['user_role']=="S" || $_SESSION['user_role']=="A"){ ?>
-                      <li><a href="#farmers">Farmer Details</a></li>
-            <?php } }?>
+                      <li><a href="#farmers">Crop Requests</a></li>
+            <?php }?>
+              <li><a href="#services">Services</a></li>
+            <?php } ?>
             <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li class="drop-down"><a href="">Drop Down</a>
-            <ul>
-                <li><a href="#">Drop Down 1</a></li>
-                <li class="drop-down"><a href="#">Drop Down 2</a>
-                <ul>
-                    <li><a href="#">Deep Drop Down 1</a></li>
-                    <li><a href="#">Deep Drop Down 2</a></li>
-                    <li><a href="#">Deep Drop Down 3</a></li>
-                    <li><a href="#">Deep Drop Down 4</a></li>
-                    <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-                </li>
-                <li><a href="#">Drop Down 3</a></li>
-                <li><a href="#">Drop Down 4</a></li>
-                <li><a href="#">Drop Down 5</a></li>
-            </ul>
         </li>
         <?php     if(isset($_SESSION['username'])){ ?>
             <li><a href="chatapplication/">Chat</a></li>
@@ -183,7 +168,7 @@
           <section id="farmers" class="features">
             <div class="container">
               <div class="section-title" data-aos="fade-up">
-                <h2>Farmer Details</h2>
+                <h2>Crop Reqests</h2>
               </div>
               <div data-aos="fade-up" data-aos-delay="300">
                 <table class="table table-bordered" id="farmertable" width="100%" cellspacing="0">
@@ -222,6 +207,82 @@
           </section><!-- End Farmer Section -->
     <?php } }?>
 
+    <!-- ======= Services Section ======= -->
+    <?php if(isset($_SESSION['user_role'])){ ?>
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Services</h2>
+          <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fug</p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="icofont-chat"></i></div>
+              <h4 class="title"><a href="chatapplication/">Direct Message</a></h4>
+              <p class="description">You Can Derectly Chat With Each Others</p>
+            </div>
+          </div>
+
+                  <?php if($_SESSION['user_role']=="F"){ ?>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="icofont-ui-add"></i></div>
+              <h4 class="title"><a href="pages/farmer/farmerrqst.php">Add Request</a></h4>
+              <p class="description">Make A Sale Reqest For Your Harvest</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="icofont-dashboard-web"></i></div>
+              <h4 class="title"><a href="pages/farmer/farmerdashboard.php">View Request Status</a></h4>
+              <p class="description">View Active Requests</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="icofont-truck-loaded"></i></div>
+              <h4 class="title"><a href="#">Comming Soon...</a></h4>
+              <p class="description">Stay Tuned!!</p>
+            </div>
+          </div>
+
+          <?php }elseif($_SESSION['user_role']=="A" || $_SESSION['user_role']=="S"){ ?>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="icofont-ui-add"></i></div>
+              <h4 class="title"><a href="pages/adduser.php">Add User</a></h4>
+              <p class="description">Add Staff Member Or Farmer To The System.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="icofont-dashboard-web"></i></div>
+              <h4 class="title"><a href="pages/admindashboard.php">Dashboard</a></h4>
+              <p class="description">View Total Statistics.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="icofont-truck-loaded"></i></div>
+              <h4 class="title"><a href="#">Comming Soon...</a></h4>
+              <p class="description">Stay Tuned!!</p>
+            </div>
+          </div>
+
+          <?php }} ?>
+
+      </div>
+    </section><!-- End Services Section -->
+
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about">
       <div class="container">
@@ -254,56 +315,6 @@
 
       </div>
     </section><!-- End About Us Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fug</p>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="icofont-chat"></i></div>
-              <h4 class="title"><a href="chatapplication/">Direct Message</a></h4>
-              <p class="description">You Can Derectly Chat With Each Others</p>
-            </div>
-          </div>
-
-          <?php if(isset($_SESSION['user_role'])){
-                    if($_SESSION['user_role']=="F"){ ?>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="icofont-ui-add"></i></div>
-              <h4 class="title"><a href="pages/farmer/farmerrqst.php">Add Request</a></h4>
-              <p class="description">Make A Sale Reqest For Your Harvest</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="icofont-dashboard-web"></i></div>
-              <h4 class="title"><a href="pages/farmer/farmerdashboard.php">View Request Status</a></h4>
-              <p class="description">Make A Sale Reqest For Your Harvest</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-              <div class="icon"><i class="icofont-truck-loaded"></i></div>
-              <h4 class="title"><a href="#">Comming Soon...</a></h4>
-              <p class="description">Stay Tuned!!</p>
-            </div>
-          </div>
-
-                    <?php }} ?>
-
-      </div>
-    </section><!-- End Services Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">

@@ -141,8 +141,7 @@
               <li><strong>Crop Type</strong>: <?php echo $user_crop ?></li>
               <li><strong>Total Weight</strong>: <?php echo $rqst_weight ?></li>
               <li><strong>Harvested date</strong>: <?php echo $rqst_date ?></li>
-              <li><a href="../../includes/cropaction.php?action=approve&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-success">Approve</button></a>   <a href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-danger">Reject</button></a></li>
-                             
+              <li><a href="../../includes/cropaction.php?action=approve&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-success">Approve</button></a>   <a href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-danger">Reject</button></a></li> 
             </ul>
           </div>
         </div>

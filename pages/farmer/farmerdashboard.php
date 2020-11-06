@@ -20,6 +20,7 @@
 
   <!-- Template Main CSS File -->
   <link href="../../assets/css/style.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -139,7 +140,7 @@
     </section>
 
   </main><!-- End #main -->
-
+  
  <!-- ======= Footer ======= -->
  <footer id="footer">
     <div class="container">
@@ -161,7 +162,14 @@
     </div>
   </footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="../../assets/vendor/jquery/jquery.min.js"></script>
+
+
+<!--  Main JS File -->
+<script src="../../assets/js/main.js"></script>
 
   
   <!-- Bootstrap core JavaScript-->
@@ -178,6 +186,6 @@
 </script>
 
 
-</body>
+
 
 </html>

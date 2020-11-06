@@ -34,7 +34,7 @@ foreach($result as $row)
 	$user_last_activity = fetch_user_last_activity($row['user_id'], $connect);
 	if($user_last_activity > $current_timestamp)
 	{
-		$status = '<span class="badge badge-pill badge-success"> </span>';
+		$status = '<span class="badge badge-pill badge-success">Online</span>';
 	}
 	$output .= '
 	<tr>
