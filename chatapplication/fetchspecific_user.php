@@ -6,7 +6,7 @@ include('database_connection.php');
 $user_id = $_GET['user_id'];
 session_start();
 
-$query = "SELECT * FROM users WHERE user_id = 10";
+$query = "SELECT * FROM users WHERE user_id = $user_id";
 
 $statement = $connect->prepare($query);
 

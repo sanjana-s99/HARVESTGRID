@@ -252,13 +252,13 @@
             </div>
           </div>
 
-          <?php }elseif($_SESSION['user_role']=="A" || $_SESSION['user_role']=="S"){ ?>
+          <?php }elseif($_SESSION['user_role']=="A"){ ?>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
               <div class="icon"><i class="icofont-ui-add"></i></div>
-              <h4 class="title"><a href="pages/adduser.php">Add User</a></h4>
-              <p class="description">Add Staff Member Or Farmer To The System.</p>
+              <h4 class="title"><a href="pages/adduser.php">Add Staff Members</a></h4>
+              <p class="description">Add Staff Member To The System.</p>
             </div>
           </div>
 
@@ -266,7 +266,33 @@
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
               <div class="icon"><i class="icofont-dashboard-web"></i></div>
               <h4 class="title"><a href="pages/admindashboard.php">Dashboard</a></h4>
-              <p class="description">View Total Statistics.</p>
+              <p class="description">View User Data & Total Statistics.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="icofont-truck-loaded"></i></div>
+              <h4 class="title"><a href="#">Comming Soon...</a></h4>
+              <p class="description">Stay Tuned!!</p>
+            </div>
+          </div>
+
+          <?php }elseif($_SESSION['user_role']=="S"){ ?>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="icofont-dashboard-web"></i></div>
+              <h4 class="title"><a href="pages/admindashboard.php">Dashboard</a></h4>
+              <p class="description">View User Data & Total Statistics.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="icofont-truck-loaded"></i></div>
+              <h4 class="title"><a href="#">Comming Soon...</a></h4>
+              <p class="description">Stay Tuned!!</p>
             </div>
           </div>
 

@@ -1,5 +1,6 @@
 <?php 
     include ("../includes/db.php");
+    include ("../includes/stats.php");
     session_start(); //starting session
 ?>
 <!DOCTYPE html>
@@ -37,14 +38,16 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
+          <?php if($_SESSION['user_role']=="A"){ ?>
             <li><a href="#staff">Staff Members</a></li>
-            <li><a href="#farmer">Farmers</a></li>
-            <li><a href="#crop">Crop Requests</a></li>
-            <li><a href="#stats">Statistics</a></li>
-        <?php     if(isset($_SESSION['username'])){ ?>
+          <?php } ?>
+          <li><a href="#farmer">Farmers</a></li>
+          <li><a href="#stats">Statistics</a></li>
+          <li><a href="#crop">Crop Requests</a></li>
+          <?php if(isset($_SESSION['username'])){ ?>
             <li><a><?php echo "Hi, " . $_SESSION['username']; ?></a></li>
-            <li class="get-started"><a href="includes/signout.php">Sign Out</a></li>
-        <?php } ?>
+            <li class="get-started"><a href="../includes/signout.php">Sign Out</a></li>
+          <?php } ?>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -79,6 +82,8 @@
             die("FAILD!!".mysqli_error());
           }
     ?>
+
+  <?php if($_SESSION['user_role']=="A"){ ?>
 
     <!-- ======= Staff Section ======= -->
     <section id="staff" class="features">
@@ -118,7 +123,7 @@
                             elseif ($u4=="F") 
                               echo "<td>Female</td>";  
                             echo "<td>{$u5}</td>";
-                            echo "<td><button class='btn btn-danger'>Remove</button></td>";
+                            echo "<td><a onclick='clicked1();' class='btn btn-outline-danger btn-sm' id='staffval' name='$u6'>Remove</a></td>";
                         echo "</tr>";
                     }
                     
@@ -127,6 +132,8 @@
         </table>
      </div>
     </section><!-- End Staff Section -->
+
+                  <?php } ?>
 
     <!-- ======= Farmer Section ======= -->
     <section id="farmer" class="features">
@@ -166,7 +173,7 @@
                             elseif ($v4=="F") 
                               echo "<td>Female</td>";  
                             echo "<td>{$v5}</td>";
-                            echo "<td><button class='btn btn-danger'>Remove</button></td>";
+                            echo "<td><a onclick='clicked();' class='btn btn-outline-danger btn-sm' id='farmerval' name='$v6'>Remove</a></td>";
                         echo "</tr>";
                     }
                     
@@ -176,11 +183,26 @@
       </div>
     </section><!-- End Farmer Section -->
 
+    <!-- ======= stats Section ======= -->
+            <section id="stats" class="features">
+        <div class="container">
+            <div class="section-title">
+            <h2>Statistics</h2>
+            </div>
+            <table width="100%">
+                <tr>
+                  <td><div id="chartContainer1" style="height: 370px;"></div></td>
+                  <td><div id="chartContainer2" style="height: 370px;"></div></td>
+                </tr>
+            </table>
+        </div>
+    </section><!-- End stats Section -->
+
     <!-- ======= crop rqst Section ======= -->
     <section id="crop" class="features">
         <div class="container">
             <div class="section-title">
-            <h2>Crop Reqests</h2>
+            <h2>Crop Requests</h2>
             </div>
             <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                 <thead>
@@ -203,9 +225,9 @@
                     echo "<tr>";
                         echo "<td>{$w1}</td>";
                         echo "<td>{$w2}</td>";
-                        echo "<td>{$w3}</td>";
+                        echo "<td>{$w3} KG</td>";
                         echo "<td>{$w4}</td>";
-                        echo "<td><a class='btn btn-info btn-sm' href='farmer/farmer.php?rqst_id=$w0'>More Info</a></td>";
+                        echo "<td><a class='btn btn-outline-info btn-sm' href='farmer/farmer.php?rqst_id=$w0'>More Info</a></td>";
                     echo "</tr>";
                 }
                 
@@ -215,15 +237,6 @@
             </table>
         </div>
     </section><!-- End Farmer Section -->
-
-        <!-- ======= stats Section ======= -->
-        <section id="stats" class="features">
-        <div class="container">
-            <div class="section-title">
-            <h2>Statistics</h2>
-            </div>
-        </div>
-    </section><!-- End stats Section -->
 
     </main><!-- End #main -->
   
@@ -266,8 +279,28 @@
 <!-- Page level plugin JavaScript-->
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <script>
+
+    function clicked() {
+      var value1 = document.getElementById("farmerval").name;
+      if(confirm('Do you want to remove this farmer?')) {
+        window.location="../includes/action.php?delete="+value1;
+          }else{
+            return false;
+          }
+    }
+
+    function clicked1() {
+      var value1 = document.getElementById("staffval").name;
+      if(confirm('Do you want to remove this staff member?')) {
+        window.location="../includes/action.php?delete="+value1;
+          }else{
+            return false;
+          }
+    }
+
     $(document).ready(function() {
         $('#dataTable').DataTable();
     });
@@ -279,6 +312,49 @@
     $(document).ready(function() {
         $('#dataTable2').DataTable();
     });
+
+    window.onload = function () {
+    
+        var chart1 = new CanvasJS.Chart("chartContainer1", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "Approved Harvest"
+            },
+            data: [{
+                type: "pie", //change type to bar, line, area, pie, etc  
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabelFontSize: 16,
+                indexLabel: "{label} - #percent%",
+                yValueFormatString: "#,##0KG",
+                dataPoints: <?php echo json_encode($approved, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title:{
+                text: "To Be Approved Harvest"
+            },
+            data: [{
+                type: "pie", //change type to bar, line, area, pie, etc  
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabelFontSize: 16,
+                indexLabel: "{label} - #percent%",
+                yValueFormatString: "#,##0KG",
+                dataPoints: <?php echo json_encode($tobeapproved, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+
+        chart1.render();
+        chart2.render();
+    
+    }
 </script>
 
 
