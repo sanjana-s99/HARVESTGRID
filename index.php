@@ -174,8 +174,7 @@
     <?php
       if(isset($_SESSION['user_role'])){
         if($_SESSION['user_role']=="S" || $_SESSION['user_role']=="A"){
-
-          $query = "SELECT * FROM users WHERE user_role = 'F'";
+          $query = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.rqst_id, users.user_name, users.user_crop FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id WHERE farmerrqst.status = 'N'";
           $result = mysqli_query($con, $query);
           if(!$result){
             die("FAILD!!".mysqli_error());
@@ -194,24 +193,24 @@
                           <th>Name</th>
                           <th>Crop Type</th>
                           <th>Weight</th>
-                          <th>Status</th>
+                          <th>Date</th>
                           <th>Action</th>
                       </tr>
                   </thead>
                   <tbody>
                   <?php
                     while($row = mysqli_fetch_assoc($result)){
-                        $u0 = $row['user_id'];
+                        $u0 = $row['rqst_id'];
                         $u1 = $row['user_name'];
                         $u2 = $row['user_crop'];
-                        $u3 = "N/A";
-                        $u4 = "N/A";
+                        $u3 = $row['weight'];
+                        $u4 = $row['date'];
                         echo "<tr>";
                             echo "<td>{$u1}</td>";
                             echo "<td>{$u2}</td>";
                             echo "<td>{$u3}</td>";
                             echo "<td>{$u4}</td>";
-                            echo "<td><a class='btn btn-info btn-sm' href='pages/farmer.php?farmer_id=$u0'>More Info</a></td>";
+                            echo "<td><a class='btn btn-info btn-sm' href='pages/farmer/farmer.php?rqst_id=$u0'>More Info</a></td>";
                         echo "</tr>";
                     }
                     
