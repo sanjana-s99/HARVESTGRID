@@ -1,3 +1,7 @@
+<?php 
+    include ("../../includes/db.php");
+    session_start(); //starting session
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,24 +9,17 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Inner Page - Vesperr Bootstrap Template</title>
+  <title>Harvestgrid - farmer dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Vesperr - v2.2.1
-  * Template URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <link href="../../assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -83,21 +80,61 @@ link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,6
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Inner Page</h2>
+          <h2>Farmer Dashboard</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Inner Page</li>
+            <li>Farmer Dashboard</li>
           </ol>
         </div>
 
       </div>
     </section><!-- End Breadcrumbs Section -->
 
+    <?php
+          $user_id = $_SESSION['user_id'];
+          $query = "SELECT *  FROM farmerrqst WHERE user_id = $user_id";
+          $result = mysqli_query($con, $query);
+          if(!$result){
+            die("FAILD!!".mysqli_error());
+          }
+    ?>
     <section class="inner-page">
       <div class="container">
-        <p>
-          Example inner page template
-        </p>
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Request Id</th>
+                    <th>Weight</th>
+                    <th>Harvested Date</th>
+                    <th>Requested Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                    while($row = mysqli_fetch_assoc($result)){
+                        $u0 = $row['rqst_id'];
+                        $u1 = $row['weight'];
+                        $u2 = $row['date'];
+                        $u3 = $row['rdate'];
+                        $u4 = $row['status'];
+                        echo "<tr>";
+                            echo "<td>{$u0}</td>";
+                            echo "<td>{$u1}</td>";
+                            echo "<td>{$u2}</td>";
+                            echo "<td>{$u3}</td>";
+                            if($u4=="A")
+                              echo "<td ><span class='badge badge-success'> </span> Approved</td>";
+                            elseif ($u4=="N") 
+                              echo "<td ><span class='badge badge-warning'> </span> Not Approved</td>";
+                            elseif ($u4=="R") 
+                              echo "<td ><span class='badge badge-danger'> </span> Rejected</td>";  
+                        echo "</tr>";
+                    }
+                    
+                    ?>
+            </tbody>
+        </table>
       </div>
     </section>
 
@@ -125,6 +162,21 @@ link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,6
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  
+  <!-- Bootstrap core JavaScript-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+        $(document).ready(function() {
+              $('#dataTable').DataTable();
+        });
+</script>
+
 
 </body>
 

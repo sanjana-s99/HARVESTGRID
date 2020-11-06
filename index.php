@@ -19,7 +19,6 @@
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -99,7 +98,7 @@
           <h1 data-aos="fade-up">Grow your business with HarvestGrid</h1>
           <h2 data-aos="fade-up" data-aos-delay="400">We are team of talanted designers making websites with Bootstrap</h2>
           <div data-aos="fade-up" data-aos-delay="800">
-            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            <a href="#services" class="btn-get-started scrollto">Get Started</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
@@ -119,7 +118,7 @@
 
               <div class="col-md-2 d-md-flex align-items-md-stretch">
                 <div class="count-box">
-                  <i class="icofont-simple-smile"></i>
+                  <i class="icofont-crop-plant"></i>
                   <span data-toggle="counter-up"><?php echo $rice; ?></span>
                   <p><strong>Rice</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
                 </div>
@@ -127,7 +126,7 @@
 
               <div class="col-md-2 d-md-flex align-items-md-stretch">
                 <div class="count-box">
-                  <i class="icofont-simple-smile"></i>
+                  <i class="icofont-tea"></i>
                   <span data-toggle="counter-up"><?php echo $tea; ?></span>
                   <p><strong>Tea</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
                 </div>
@@ -135,7 +134,7 @@
 
               <div class="col-md-2 d-md-flex align-items-md-stretch">
                 <div class="count-box">
-                  <i class="icofont-simple-smile"></i>
+                  <i class="icofont-coconut"></i>
                   <span data-toggle="counter-up"><?php echo $coconut; ?></span>
                   <p><strong>Coconut</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
                 </div>
@@ -143,7 +142,7 @@
 
               <div class="col-md-2 d-md-flex align-items-md-stretch">
                 <div class="count-box">
-                  <i class="icofont-simple-smile"></i>
+                  <i class="icofont-tree-alt"></i>
                   <span data-toggle="counter-up"><?php echo $spices; ?></span>
                   <p><strong>Spices</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
                 </div>
@@ -151,7 +150,7 @@
 
               <div class="col-md-2 d-md-flex align-items-md-stretch">
                 <div class="count-box">
-                  <i class="icofont-simple-smile"></i>
+                  <i class="icofont-fruits"></i>
                   <span data-toggle="counter-up"><?php echo $vnf; ?></span>
                   <p><strong>Fruits & Vegetable</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
                 </div>
@@ -159,7 +158,7 @@
 
               <div class="col-md-2 d-md-flex align-items-md-stretch">
                 <div class="count-box">
-                  <i class="icofont-simple-smile"></i>
+                  <i class="icofont-tree"></i>
                   <span data-toggle="counter-up"><?php echo $other; ?></span>
                   <p><strong>Other</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
                 </div>
@@ -268,37 +267,40 @@
         <div class="row">
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <div class="icon"><i class="icofont-chat"></i></div>
+              <h4 class="title"><a href="chatapplication/">Direct Message</a></h4>
+              <p class="description">You Can Derectly Chat With Each Others</p>
             </div>
           </div>
 
+          <?php if(isset($_SESSION['user_role'])){
+                    if($_SESSION['user_role']=="F"){ ?>
+
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <div class="icon"><i class="icofont-ui-add"></i></div>
+              <h4 class="title"><a href="pages/farmer/farmerrqst.php">Add Request</a></h4>
+              <p class="description">Make A Sale Reqest For Your Harvest</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <div class="icon"><i class="icofont-dashboard-web"></i></div>
+              <h4 class="title"><a href="pages/farmer/farmerdashboard.php">View Request Status</a></h4>
+              <p class="description">Make A Sale Reqest For Your Harvest</p>
             </div>
           </div>
 
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <div class="icon"><i class="icofont-truck-loaded"></i></div>
+              <h4 class="title"><a href="#">Comming Soon...</a></h4>
+              <p class="description">Stay Tuned!!</p>
             </div>
           </div>
 
-        </div>
+                    <?php }} ?>
 
       </div>
     </section><!-- End Services Section -->
