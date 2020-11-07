@@ -1,4 +1,7 @@
-<?php include("../../includes/farmer.php"); ?>
+<?php
+  include("../../includes/farmer.php");
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Portfolio Details - Vesperr Bootstrap Template</title>
+  <title>HarvestGrid Pickup-Request</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -16,44 +19,11 @@
   <!-- Vendor CSS Files -->
   <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="../../assets/vendor/aos/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css">
+  
 
-  <style>
-    body {
-      //overflow-y: hidden; /* Hide vertical scrollbar */
-      //overflow-x: hidden; /* Hide horizontal scrollbar */
-    }
-      .chat_message_area
-			{
-				position: relative;
-				width: 100%;
-				height: auto;
-				background-color: #FFF;
-				border: 1px solid #CCC;
-				border-radius: 3px;
-			}
-
-			.image_upload
-			{
-				position: absolute;
-				top:3px;
-				right:3px;
-			}
-			.image_upload > form > input
-			{
-				display: none;
-			}
-
-			.image_upload img
-			{
-				width: 24px;
-				cursor: pointer;
-			}
-  </style>
 </head>
 
 <body>
@@ -63,39 +33,18 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>Vesperr</span></a></h1>
+        <h1 class="text-light"><a href="index.html"><span>Harvestgrid</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="#index.html">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li class="drop-down"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="drop-down"><a href="#">Drop Down 2</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
-            </ul>
-          </li>
-          <li><a href="#contact">Contact</a></li>
-
-          <li class="get-started"><a href="#about">Get Started</a></li>
+            <li class="active"><a href="../../index.php">Home</a></li>
+            <li><a href="../admindashboard.php">Dashboard</a></li>
+            <li><a href="../../chatapplication/">Direct Message</a></li>
+            <li><a><?php echo "Hi, " . $_SESSION['username']; ?></a></li>
+            <li class="get-started"><a href="../../includes/signout.php">Sign Out</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -111,7 +60,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Request Details</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="../../index.php">Home</a></li>
             <li>Request Details</li>
           </ol>
         </div>
@@ -125,7 +74,7 @@
         <div class="row">
 
           <div class="col-lg-8">
-            <h2 class="portfolio-title">Farmer Request Detail. Request Id : <?php echo $rqst_id ?></h2>
+            <h2 class="portfolio-title">Request Id : <?php echo $rqst_id ?></h2>
             <div class="owl-carousel portfolio-details-carousel">
               <img src="../../uploads/<?php echo $img1 ?>" class="img-fluid" alt="" style = "width: 800px; height: 390px;">
               <img src="../../uploads/<?php echo $img2 ?>" class="img-fluid" alt="" style = "width: 800px; height: 390px;">
@@ -141,7 +90,13 @@
               <li><strong>Crop Type</strong>: <?php echo $user_crop ?></li>
               <li><strong>Total Weight</strong>: <?php echo $rqst_weight ?></li>
               <li><strong>Harvested date</strong>: <?php echo $rqst_date ?></li>
-              <li><a href="../../includes/cropaction.php?action=approve&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-success">Approve</button></a>   <a href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-danger">Reject</button></a></li> 
+              <li><strong>Requested date</strong>: <?php echo $rqst_date ?></li>
+              <li><strong>Request Status</strong>: <?php echo $rqst_status ?></li>
+              <?php if($rqst_status=="New Request") { ?>
+                <li><a href="../../includes/cropaction.php?action=approve&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-success">Approve</button></a>   <a href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-danger">Reject</button></a></li> 
+              <?php }elseif($rqst_status=="Approved") { ?>
+                <li><a href="../../includes/cropaction.php?action=collected&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-warning">Collected</button></a>   <a href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-danger">Reject</button></a></li> 
+              <?php } ?>
             </ul>
           </div>
         </div>

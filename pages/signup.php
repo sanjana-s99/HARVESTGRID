@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up</title>
+    <title>HarvestGrid Sign-Up</title>
 
     <!-- Main css -->
     <link href="../assets/css/style.css" rel="stylesheet">
@@ -38,62 +38,8 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6XkaPZ0poj76FV4fvv39OPnVHeFKV8C0"></script>
     <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
     <style type="text/css"> #map {width: 100%; height: 350px;} </style>
+    <link href="../assets/css/formstyle.css" rel="stylesheet">
 
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: aliceblue
-        }
-
-        .wrapper {
-            padding: 30px 50px;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            margin: 10px auto;
-            max-width: 600px
-        }
-
-        label {
-            margin-bottom: 0;
-            font-size: 14px;
-            font-weight: 500;
-            color: #777;
-            padding-left: 3px
-        }
-
-        .form-control {
-            border-radius: 10px
-        }
-
-
-        .form-control:focus {
-            box-shadow: none;
-            border: 1.5px solid #0779e4
-        }
-
-        select {
-            display: block;
-            width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            height: 40px;
-            padding: 5px 10px
-        }
-
-        select:focus {
-            outline: none
-        }
-
-        .button {
-            background-color: #fff;
-            color: #0779e4
-        }
-
-        .button:hover {
-            background-color: #0779e4;
-            color: #fff
-        }
-    </style>
 </head>
 
 <body>
@@ -108,7 +54,6 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
             <li><a href="../index.php">Home</a></li>
-            <li class="active"><a href="pages/signup.php">Register</a></li>
             <li class="get-started"><a href="signin.php">Sign In</a></li>
         </ul>
       </nav><!-- .nav-menu -->

@@ -41,15 +41,12 @@
 </head>
 
 <body>
-  <main>
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
-
       <div class="logo mr-auto">
         <h1 class="text-light"><a href="index.php"><span>HarvestGrid</span></a></h1>
       </div>
-
       <nav class="nav-menu d-none d-lg-block">
         <ul>
             <li class="active"><a href="index.php">Home</a></li>
@@ -63,7 +60,7 @@
             <li><a href="#contact">Contact</a></li>
         </li>
         <?php     if(isset($_SESSION['username'])){ ?>
-            <li><a href="chatapplication/">Chat</a></li>
+            <li><a href="chatapplication/">Direct Message</a></li>
             <li><a><?php echo "Hi, " . $_SESSION['username']; ?></a></li>
             <li class="get-started"><a href="includes/signout.php">Sign Out</a></li>
         <?php }else{ ?>
@@ -72,9 +69,11 @@
         <?php } ?>
         </ul>
       </nav><!-- .nav-menu -->
-
     </div>
   </header><!-- End Header -->
+
+  <main id="main">
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
@@ -82,17 +81,19 @@
         <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h1 data-aos="fade-up">Grow your business with HarvestGrid</h1>
           <h2 data-aos="fade-up" data-aos-delay="400">We are team of talanted designers making websites with Bootstrap</h2>
-          <div data-aos="fade-up" data-aos-delay="800">
-            <a href="#services" class="btn-get-started scrollto">Get Started</a>
-          </div>
+          <?php if(isset($_SESSION['username'])){ ?>
+            <div data-aos="fade-up" data-aos-delay="800">
+              <a href="#services" class="btn-get-started scrollto">Get Started</a>
+            </div>
+          <?php } ?>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
             <div id="map" class="img-fluid"></div>
         </div>
       </div>
     </div>
-
   </section><!-- End Hero -->
+
   <!-- ======= Counts Section ======= -->
   <section id="counts" class="counts">
     <div class="container align-items-center">
@@ -445,13 +446,11 @@
   <!-- Vendor JS Files -->
   <script src="assets/vendor/jquery/jquery.min.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
   <script src="assets/vendor/counterup/counterup.min.js"></script>
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
 
   <!--  Main JS File -->
