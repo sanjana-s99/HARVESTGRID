@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Main css -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script>
         // Disable form submissions if there are invalid fields
         (function() {
@@ -28,12 +28,83 @@
         }, false);
         })();
     </script>
-<title>reset password</title>
+        <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: aliceblue
+        }
+
+        .wrapper {
+            padding: 30px 50px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            margin: 10px auto;
+            max-width: 600px
+        }
+
+        label {
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 500;
+            color: #777;
+            padding-left: 3px
+        }
+
+        .form-control {
+            border-radius: 10px
+        }
+
+
+        .form-control:focus {
+            box-shadow: none;
+            border: 1.5px solid #0779e4
+        }
+
+        select {
+            display: block;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            height: 40px;
+            padding: 5px 10px
+        }
+
+        select:focus {
+            outline: none
+        }
+
+        .button {
+            background-color: #fff;
+            color: #0779e4
+        }
+
+        .button:hover {
+            background-color: #0779e4;
+            color: #fff
+        }
+    </style>
+<title>Harvestgrid reset-password</title>
 </head>
 <body>
-<div class="container-fluid">
-		<div class="row mt-4 mx-auto d-block">
-			<div class="col-8 mx-auto d-block">
+<div class="container">
+       <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light"><a href="index.html"><span>HarvestGrid</span></a></h1>
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+            <li><a href="../index.php">Home</a></li>
+            <li class="get-started"><a href="../pages/signin.php">Signin</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+  <br><br><br><br><br><br>
 
 			<?php
 include('../includes/db.php');
@@ -54,7 +125,8 @@ if (isset($_GET["key"]) && isset($_GET["email"]) && isset($_GET["action"]) && ($
 	if ($expDate >= $curDate){
 	?>
 
-
+<div class="wrapper bg-white mt-sm-5">
+    <h4 class="pb-4 border-bottom">HarvestGrid Reset-Password</h4>
     <form action="" name="update" class="needs-validation" method="post" novalidate>
         <input type="hidden" name="action" value="update" />
 
@@ -76,6 +148,7 @@ if (isset($_GET["key"]) && isset($_GET["email"]) && isset($_GET["action"]) && ($
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    </div>
 
 <?php
 }else{
@@ -117,9 +190,9 @@ if(isset($_POST["email"]) && isset($_POST["action"]) && ($_POST["action"]=="upda
         if($error!=""){
             echo "$error";
             }else{
+                $pass1 = password_hash($pass1, PASSWORD_DEFAULT);
 
-    mysqli_query($con,
-    "UPDATE users SET user_password='$pass1' WHERE user_email='$email';");	
+    mysqli_query($con,"UPDATE users SET user_password='$pass1' WHERE user_email='$email';");	
 
     mysqli_query($con,"DELETE FROM verify WHERE `email`='$email';");		
         
@@ -141,13 +214,10 @@ if(isset($_POST["email"]) && isset($_POST["action"]) && ($_POST["action"]=="upda
             }		
 }
 ?>
-            </div>
-		</div>
 </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="../scripts/weuse.js"></script>
 </body>
 </html>

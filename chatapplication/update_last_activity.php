@@ -1,20 +1,18 @@
 <?php
 
-//update_last_activity.php
+    include('database_connection.php');
 
-include('database_connection.php');
+    session_start();
 
-session_start();
+    $query = "
+    UPDATE login_details 
+    SET last_activity = now() 
+    WHERE login_details_id = '".$_SESSION["login_details_id"]."'
+    ";
 
-$query = "
-UPDATE login_details 
-SET last_activity = now() 
-WHERE login_details_id = '".$_SESSION["login_details_id"]."'
-";
+    $statement = $connect->prepare($query);
 
-$statement = $connect->prepare($query);
-
-$statement->execute();
+    $statement->execute();
 
 ?>
 

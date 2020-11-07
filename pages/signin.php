@@ -7,13 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign In</title>
+    <title>HarvestGrid Sign-In</title>
 
     <!-- Main css -->
     <link href="../assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href="../assets/css/formstyle.css" rel="stylesheet">
     <script>
         // Disable form submissions if there are invalid fields
         (function() {
@@ -34,61 +34,6 @@
         }, false);
         })();
     </script>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: aliceblue
-        }
-
-        .wrapper {
-            padding: 30px 50px;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            margin: 10px auto;
-            max-width: 600px
-        }
-
-        label {
-            margin-bottom: 0;
-            font-size: 14px;
-            font-weight: 500;
-            color: #777;
-            padding-left: 3px
-        }
-
-        .form-control {
-            border-radius: 10px
-        }
-
-
-        .form-control:focus {
-            box-shadow: none;
-            border: 1.5px solid #0779e4
-        }
-
-        select {
-            display: block;
-            width: 100%;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            height: 40px;
-            padding: 5px 10px
-        }
-
-        select:focus {
-            outline: none
-        }
-
-        .button {
-            background-color: #fff;
-            color: #0779e4
-        }
-
-        .button:hover {
-            background-color: #0779e4;
-            color: #fff
-        }
-    </style>
 </head>
 
 <body>
@@ -103,7 +48,7 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
             <li><a href="../index.php">Home</a></li>
-            <li><a href="signup.php">Register</a></li>
+            <li class="get-started"><a href="signup.php">Register</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -125,6 +70,7 @@
                 <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="user_password" required>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+                <br><br><p><a href="forgetpass.php">Forget Password??</a></p>
             </div>
         </div>
         <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Submit</button></div>

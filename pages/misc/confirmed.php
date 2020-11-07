@@ -23,11 +23,11 @@
     SELECT * FROM verify WHERE `skey`='$key' and `email`='$email';");
     $row = mysqli_num_rows($query);
     if ($row==""){
-    $error .= '    <div class="container-fluid">
-        <div class="row mt-4 mb-5">
-            <div class="col-8 mx-auto d-block">
+    $error .= '    <div class="container">
+    <br><br><br><br><br><br>
                 <img class="mx-auto d-block" src="../../images/invalid.svg" style="max-width:400px;width:100%;">
-                <h2 text-align="center" class="mx-auto d-block mt-3">email not confirmed</h2>
+                <br>
+                <h2 class="text-center mt-3">Email Not Confirmed</h2>
                 <h5 class="text-center mt-3">The link is invalid. Either you did not copy the correct link from the email, 
 or you have already used the key in which case it is deactivated.</h5>
                 <h5 class="text-center mt-3">You will be redirected in <span id="counter"> 10 </span> second(s).</h5>
@@ -35,7 +35,7 @@ or you have already used the key in which case it is deactivated.</h5>
                     function countdown() {
                         var i = document.getElementById("counter");
                         if (parseInt(i.innerHTML) <= 0) {
-                            location.href = "https://weuse.work/";
+                            location.href = "../../index.php";
                         }
                         if (parseInt(i.innerHTML) != 0) {
                             i.innerHTML = parseInt(i.innerHTML) - 1;
@@ -46,8 +46,6 @@ or you have already used the key in which case it is deactivated.</h5>
                     }, 1000);
 
                 </script>
-            </div>
-        </div>
     </div>';
     }else{
     $row = mysqli_fetch_assoc($query);
@@ -61,17 +59,16 @@ mysqli_query($con,"DELETE FROM verify WHERE `email`='$email';");
         
     ?>
 
-    <div class="container-fluid">
-        <div class="row mt-4 mb-5">
-            <div class="col-8 mx-auto d-block">
+    <div class="container">
+    <br><br><br><br><br><br>
                 <img class="mx-auto d-block" src="../../images/confirmed.svg" style="max-width:400px;width:100%;">
-                <h2 text-align="center" class="mx-auto d-block mt-3">email confirmed</h2>
+                <h2 class="text-center mt-3">Email Confirmed</h2>
                 <h5 class="text-center mt-3">You will be redirected in <span id="counter"> 10 </span> second(s).</h5>
                 <script>
                     function countdown() {
                         var i = document.getElementById('counter');
                         if (parseInt(i.innerHTML) <= 0) {
-                            location.href = 'https://weuse.work/pages/signin.php';
+                            location.href = '../signin.php';
                         }
                         if (parseInt(i.innerHTML) != 0) {
                             i.innerHTML = parseInt(i.innerHTML) - 1;
@@ -82,24 +79,21 @@ mysqli_query($con,"DELETE FROM verify WHERE `email`='$email';");
                     }, 1000);
 
                 </script>
-            </div>
-        </div>
     </div>
     <?php
 }else{
-    $error .= '    <div class="container-fluid">
-
-        <div class="row mt-4 mb-5">
-            <div class="col-8 mx-auto d-block">
+    $error .= '    <div class="container">
+    <br><br><br><br><br><br>
                 <img class="mx-auto d-block" src="../../images/timeout.svg" style="max-width:500px;width:100%;">
-                <h2 text-align="center" class="mx-auto d-block mt-3">email not confirmed</h2>
+                <br>
+                <h2 class="text-center mt-3">Email Not Confirmed</h2>
                 <h5 class="text-center mt-3">The link is expired. You are trying to use an expired link which was valid for only 24 hours (1 day after request).</h5>
                 <h5 class="col-8 text-center mt-3">You will be redirected in <span id="counter"> 10 </span> second(s).</h5>
                 <script>
                     function countdown() {
                         var i = document.getElementById("counter");
                         if (parseInt(i.innerHTML) <= 0) {
-                            location.href = "https://weuse.work";
+                            location.href = "../../index.php";
                         }
                         if (parseInt(i.innerHTML) != 0) {
                             i.innerHTML = parseInt(i.innerHTML) - 1;
@@ -110,8 +104,6 @@ mysqli_query($con,"DELETE FROM verify WHERE `email`='$email';");
                     }, 1000);
 
                 </script>
-            </div>
-        </div>
     </div>';
 				}
 		}
