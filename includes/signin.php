@@ -14,7 +14,7 @@ require('db.php');
         $query = "SELECT * FROM users WHERE user_email='$user_email'";
         $result = mysqli_query($con,$query);
         $row = mysqli_fetch_assoc($result);
-        if(password_verify($user_password, $row["user_password"])){
+        if(isset($row["user_password"]) && password_verify($user_password, $row["user_password"])){
             if($row['status']=='A'){
                 $_SESSION['username'] =  strstr($row['user_name'], " ", "true"); //assign session user_name
                 $_SESSION['user_id'] =  $row['user_id']; //assign session user_id

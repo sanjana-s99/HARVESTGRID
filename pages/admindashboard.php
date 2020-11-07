@@ -196,6 +196,7 @@
             <table width="100%">
                 <tr>
                   <td><div id="chartContainer1" style="height: 370px;"></div></td>
+                  <td width="5%"> </td>
                   <td><div id="chartContainer2" style="height: 370px;"></div></td>
                 </tr>
             </table>
@@ -203,6 +204,7 @@
             <table width="100%">
                 <tr>
                   <td><div id="chartContainer3" style="height: 370px;"></div></td>
+                  <td width="5%"> </td>
                   <td><div id="chartContainer4" style="height: 370px;"></div></td>
                 </tr>
             </table>
@@ -218,12 +220,13 @@
             <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
               <thead>
                   <tr>
-                      <th>Name</th>
-                      <th>Crop Type</th>
-                      <th>Weight</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th width ="10%" >Action</th>
+                    <th>Request Id</th>
+                    <th>Name</th>
+                    <th>Crop Type</th>
+                    <th>Weight</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th width ="10%" >Action</th>
                   </tr>
               </thead>
               <tbody>
@@ -246,12 +249,13 @@
                     $w5 = "<span class='badge badge-danger'> </span> Rejected";
 
                   echo "<tr>";
-                      echo "<td>{$w1}</td>";
-                      echo "<td>{$w2}</td>";
-                      echo "<td>{$w3} KG</td>";
-                      echo "<td>{$w4}</td>";
-                      echo "<td>{$w5}</td>";
-                      echo "<td><a class='btn btn-outline-info btn-sm' href='farmer/farmer.php?rqst_id=$w0'>More Informations</a></td>";
+                    echo "<td>{$w0}</td>";
+                    echo "<td>{$w1}</td>";
+                    echo "<td>{$w2}</td>";
+                    echo "<td>{$w3} KG</td>";
+                    echo "<td>{$w4}</td>";
+                    echo "<td>{$w5}</td>";
+                    echo "<td><a class='btn btn-outline-info btn-sm' href='farmer/farmer.php?rqst_id=$w0'>More Informations</a></td>";
                   echo "</tr>";
               }
               
@@ -291,6 +295,7 @@
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
 
 
   <!--  Main JS File -->
@@ -392,11 +397,11 @@
                 text: "Collected Harvest"
             },
             data: [{
-                type: "bar", //change type to bar, line, area, pie, etc  
+                type: "pie", //change type to bar, line, area, pie, etc  
                 showInLegend: "true",
                 legendText: "{label}",
                 indexLabelFontSize: 16,
-                indexLabel: "{label}",
+                indexLabel: "{label} - #percent%",
                 yValueFormatString: "#,##0KG",
                 dataPoints: <?php echo json_encode($collected, JSON_NUMERIC_CHECK); ?>
             }]
@@ -410,11 +415,11 @@
                 text: "Rejected Harvest"
             },
             data: [{
-                type: "bar", //change type to bar, line, area, pie, etc  
+                type: "pie", //change type to bar, line, area, pie, etc  
                 showInLegend: "true",
                 legendText: "{label}",
                 indexLabelFontSize: 16,
-                indexLabel: "{label}",
+                indexLabel: "{label} - #percent%",
                 yValueFormatString: "#,##0KG",
                 dataPoints: <?php echo json_encode($rejected, JSON_NUMERIC_CHECK); ?>
             }]
