@@ -52,8 +52,8 @@
             <?php }?>
               <li><a href="#services">Services</a></li>
             <?php } ?>
+            <li><a href="#harvest">Harvest Statistics</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#harvest">Collected Harvest</a></li>
         </li>
         <?php     if(isset($_SESSION['username'])){ ?>
             <li><a href="chatapplication/">Direct Message</a></li>
@@ -306,8 +306,31 @@
       </div>
     </section><!-- End Services Section -->
 
-    <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
+    <!-- ======= harvest Section ======= -->
+    <section id="harvest" class="contact">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Harvest Statistics</h2>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <table width="100%">
+              <tr>
+                <td><div id="chartContainer1" style="height: 370px;"></div></td>
+                <td width="5%"> </td>
+                <td><div id="chartContainer2" style="height: 370px;"></div></td>
+              </tr>
+          </table>
+        </div>
+
+      </div>
+    </section><!-- End harvest Section -->
+
+  </main><!-- End #main -->
+
+      <!-- ======= About Us Section ======= -->
+      <section id="about" class="about">
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
@@ -339,28 +362,6 @@
       </div>
     </section><!-- End About Us Section -->
 
-    <!-- ======= harvest Section ======= -->
-    <section id="harvest" class="contact">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Collected Harvest</h2>
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <table width="100%">
-              <tr>
-                <td><div id="chartContainer1" style="height: 370px;"></div></td>
-                <td width="5%"> </td>
-                <td><div id="chartContainer2" style="height: 370px;"></div></td>
-              </tr>
-          </table>
-        </div>
-
-      </div>
-    </section><!-- End harvest Section -->
-
-  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
