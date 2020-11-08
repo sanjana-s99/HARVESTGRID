@@ -56,7 +56,7 @@ function show(){
             Swal.fire({
                 title: '',
                 text: 'your account not approved yet.',
-                imageUrl: '../images/nouser.svg',
+                imageUrl: '../images/verifyfirst.svg',
                 imageHeight: 250,
                 imageAlt: 'not approved',
                 confirmButtonColor: '#ff5454',

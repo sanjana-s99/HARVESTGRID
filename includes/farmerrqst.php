@@ -1,4 +1,5 @@
 <?php
+    global $val;
     require "../../includes/db.php";
     session_start();
 
@@ -36,7 +37,33 @@
                 die('query failed'.mysqli_error($con));
             }
                 
-            header("Location: ../../index.php");
+            $val = 1;
+        }
+
+        function show(){
+            global $val;
+            if($val==1){
+                echo    "<script>
+                            window.onload = function myFunction() {
+                                Swal.fire({
+                                    title: 'request successful',
+                                    text: 'Request forward to harvestgrid team',
+                                    imageUrl: '../../images/submissionsuccess.svg',
+                                    imageHeight: 250,
+                                    imageAlt: 'rqst success',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#ff5454',
+                                    cancelButtonColor: '#ff5454',
+                                    confirmButtonText: 'Okayy',
+                                    cancelButtonText: 'Add Another'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location.href = 'farmerdashboard.php';
+                                    }
+                                })
+                            };
+                        </script>";
+            }
         }
 
 

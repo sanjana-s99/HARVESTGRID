@@ -158,6 +158,7 @@
 <!-- Page level plugin JavaScript-->
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script>
     $(document).ready(function() {
@@ -167,51 +168,102 @@
 
     function clicked1() {
       var value1 = document.getElementById("farmerval1").name;
-      if(confirm('Do you want to remove this farmer?')) {
-        window.location="../../includes/action.php?deleter="+value1;
-          }else{
-            return false;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want to delete this request',
+        imageUrl: '../../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'delete rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../../includes/action.php?deleter="+value1;
           }
+      })
     }
 
     function clicked2() {
       var value1 = document.getElementById("farmerval2").name;
-      if(confirm('Do you want to remove this farmer?')) {
-        window.location="../../includes/action.php?deleter="+value1;
-          }else{
-            return false;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want to delete this request',
+        imageUrl: '../../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'delete rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../../includes/action.php?deleter="+value1;
           }
+      })
     }
 
     function clicked3() {
       var value1 = document.getElementById("farmerval3").name;
-      if(confirm('Do you want to remove this farmer?')) {
-        window.location="../../includes/action.php?deleter="+value1;
-          }else{
-            return false;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want to delete this request',
+        imageUrl: '../../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'delete rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../../includes/action.php?deleter="+value1;
           }
+      })
     }
 
     function clicked4() {
       var value1 = document.getElementById("farmerval4").name;
-      if(confirm('Do you want to remove this farmer?')) {
-        window.location="../../includes/action.php?deleter="+value1;
-          }else{
-            return false;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want to delete this request',
+        imageUrl: '../../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'delete rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../../includes/action.php?deleter="+value1;
           }
+      })
     }
 
     function clicked5() {
       var value1 = document.getElementById("farmerval5").name;
-      if(confirm('Do you want to remove this farmer?')) {
-        window.location="../../includes/action.php?reapply="+value1;
-          }else{
-            return false;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want to delete this request',
+        imageUrl: '../../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'delete rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../../includes/action.php?deleter="+value1;
           }
+      })
     }
 </script>
-
-
-
-
 </html>

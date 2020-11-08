@@ -309,34 +309,68 @@
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script>
 
     function clicked() {
       var value1 = document.getElementById("farmerval").name;
-      if(confirm('Do you want to remove this farmer?')) {
-        window.location="../includes/action.php?delete="+value1;
-          }else{
-            return false;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want to remove this farmer',
+        imageUrl: '../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'delete rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../includes/action.php?delete="+value1;
           }
+      })
     }
 
     function clicked1() {
       var value1 = document.getElementById("staffval").name;
-      if(confirm('Do you want to remove this staff member?')) {
-        window.location="../includes/action.php?delete="+value1;
-          }else{
-            return false;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want to remove this staff member',
+        imageUrl: '../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'delete rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../includes/action.php?delete="+value1;
           }
+      })
     }
 
     function clicked2() {
       var value1 = document.getElementById("farmerval1").name;
-      if(confirm('Do you want approve this farmer?')) {
-        window.location="../includes/action.php?approve="+value1;
-          }else{
-            return false;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want approve this farmer',
+        imageUrl: '../images/confirmed.svg',
+        imageHeight: 250,
+        imageAlt: 'delete rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../includes/action.php?approve="+value1;
           }
+      })
     }
 
     $(document).ready(function() {

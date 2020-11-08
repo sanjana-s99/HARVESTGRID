@@ -60,7 +60,6 @@
 
     function show(){
         global $val;
-        global $resend;
         if($val==1){
             echo    "<script>
                         window.onload = function myFunction() {
@@ -77,7 +76,7 @@
                                 cancelButtonText: 'try again'
                             }).then((result) => {
                                 if (result.value) {
-                                    window.location.href = 'mailto:hello@weuse.work';
+                                    window.location.href = 'mailto:hello@harvestgrid.com';
                                 }
                             })
                         };

@@ -23,13 +23,13 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>HarvestGrid</span></a></h1>
+        <h1 class="text-light"><a href="../../index.php"><span>HarvestGrid</span></a></h1>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
             <li><a href="../../index.php">Home</a></li>
-            <li class="active"><a href="../pages/signup.php">Register</a></li>
+            <li class="active"><a href="../signup.php">Register</a></li>
             <li class="get-started"><a href="../signin.php">Sign In</a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -43,7 +43,7 @@
         <div class="py-2">
             <div class="row py-2">
                 <label for="weight">Total Weight:</label>
-                <input type="text" class="form-control" id="weight" placeholder="Enter Weight(KG)" name="weight" required>
+                <input type="number" class="form-control" id="weight" placeholder="Enter Weight(KG)" name="weight" required>
             </div>
             <div class="row py-2">
                 <label for="date">Harvested Date:</label>
@@ -64,6 +64,7 @@
         </div>
         <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Submit</button></div>
     </form>
+    <?php show(); ?>
 </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

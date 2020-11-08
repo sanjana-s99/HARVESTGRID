@@ -93,9 +93,9 @@
               <li><strong>Requested date</strong>: <?php echo $rqst_date ?></li>
               <li><strong>Request Status</strong>: <?php echo $rqst_status ?></li>
               <?php if($rqst_status=="New Request") { ?>
-                <li><a href="../../includes/cropaction.php?action=approve&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-success">Approve</button></a>   <a href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-danger">Reject</button></a></li> 
+                <li><a onclick='clicked1();' class="btn btn-sm btn-outline-success">Approve</a>   <a onclick='clicked2();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
               <?php }elseif($rqst_status=="Approved") { ?>
-                <li><a href="../../includes/cropaction.php?action=collected&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-warning">Collected</button></a>   <a href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>"><button class="btn btn-sm btn-outline-danger">Reject</button></a></li> 
+                <li><a onclick='clicked4();' class="btn btn-sm btn-outline-warning">Collected</a>   <a onclick='clicked3();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
               <?php } ?>
             </ul>
           </div>
@@ -140,6 +140,7 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://cdn.rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 
   <!-- Template Main JS File -->
@@ -147,6 +148,84 @@
 
 
   <script>  
+
+    function clicked1() {
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want approve this request',
+        imageUrl: '../../images/confirmed.svg',
+        imageHeight: 250,
+        imageAlt: 'approved',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href = "../../includes/cropaction.php?action=approve&rqst_id=<?php echo $rqst_id ?>";
+          }
+      })
+    }
+
+    function clicked2() {
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want reject this request',
+        imageUrl: '../../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'rejected',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>";
+          }
+      })
+    }
+
+    function clicked3() {
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want reject this request',
+        imageUrl: '../../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'rejected',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href="../../includes/cropaction.php?action=reject&rqst_id=<?php echo $rqst_id ?>";
+          }
+      })
+    }
+
+    function clicked4() {
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want marks as collected',
+        imageUrl: '../../images/pwresetdone.svg',
+        imageHeight: 250,
+        imageAlt: 'collected',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href="../../includes/cropaction.php?action=collected&rqst_id=<?php echo $rqst_id ?>";
+          }
+      })
+    }
+
+
     $(document).ready(function(){
 
       fetch_user();
