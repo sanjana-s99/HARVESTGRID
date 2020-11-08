@@ -5,6 +5,7 @@
 
         if($_GET['action']=="approve"){
             $query="UPDATE farmerrqst SET status = 'A' WHERE rqst_id = $rqst_id";
+            echo $query;
             mysqli_query($con, $query);
             header("Location: ../pages/farmer/farmer.php?rqst_id=$rqst_id");
 
