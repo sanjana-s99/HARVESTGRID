@@ -165,7 +165,7 @@
           <section id="farmers" class="features">
             <div class="container">
               <div class="section-title" data-aos="fade-up">
-                <h2>Crop Reqests</h2>
+                <h2>New Crop Reqests</h2>
               </div>
               <div data-aos="fade-up" data-aos-delay="300">
                 <table class="table table-bordered" id="farmertable" width="100%" cellspacing="0">
