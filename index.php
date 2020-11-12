@@ -406,7 +406,7 @@
   <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 
- <!--Google Map Script -->
+ <!--chart Script -->
 
  <script>
   window.onload = function () {
@@ -445,6 +445,8 @@
 
   }
 
+  //Google Map Script
+
       var customLabel = {
         Rice: {
           label: 'R'
@@ -474,7 +476,7 @@
     var infoWindow = new google.maps.InfoWindow;
 
         // Change this depending on the name of your PHP or XML file
-        downloadUrl('includes/mapdata.php', function(data) {
+        downloadUrl('includes/map/mapdata1.php', function(data) {
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName('marker');
         Array.prototype.forEach.call(markers, function(markerElem) {
@@ -487,11 +489,10 @@
             parseFloat(markerElem.getAttribute('lng')));
 
         var infowincontent = document.createElement('div');
-        var strong = document.createElement('strong');
+        var strong = document.createElement('h5');
         strong.textContent = name
         infowincontent.appendChild(strong);
-        infowincontent.appendChild(document.createElement('br'));
-        var text = document.createElement('text');
+        var text = document.createElement('p');
         text.textContent = address
         infowincontent.appendChild(text);
         var icon = customLabel[type] || {};

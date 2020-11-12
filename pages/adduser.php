@@ -24,16 +24,16 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>HarvestGrid</span></a></h1>
+        <h1 class="text-light"><a href="../index.php"><span>HarvestGrid</span></a></h1>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
             <li><a href="../index.php">Home</a></li>
-            <li class="active"><a href="pages/adduser.php">Add User</a></li>
+            <li><a href="admindashboard.php">Dashboard</a></li>
             <?php     if(isset($_SESSION['username'])){ ?>
             <li><a><?php echo "Hi, " . $_SESSION['username']; ?></a></li>
-            <li class="get-started"><a href="includes/signout.php">Sign Out</a></li>
+            <li class="get-started"><a href="../includes/signout.php">Sign Out</a></li>
         <?php } ?>
         </ul>
       </nav><!-- .nav-menu -->
