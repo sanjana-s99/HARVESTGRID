@@ -2,6 +2,9 @@
     include ("../includes/db.php");
     include ("../includes/charts.php");
     session_start(); //starting session
+    if(!isset($_SESSION["username"])){
+      header("Location: ../pages/signin.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +47,7 @@
           <li><a href="#farmer">Farmers</a></li>
           <li><a href="#stats">Statistics</a></li>
           <li><a href="#crop">Crop Requests</a></li>
+          <li><a href="#collect">To Be Collected</a></li>
           <?php if(isset($_SESSION['username'])){ ?>
             <li><a><?php echo "Hi, " . $_SESSION['username']; ?></a></li>
             <li class="get-started"><a href="../includes/signout.php">Sign Out</a></li>
@@ -264,7 +268,17 @@
               </tbody>
             </table>
         </div>
-    </section><!-- End Farmer Section -->
+    </section><!-- End crop rqst Section -->
+
+    <!-- ======= collect Section ======= -->
+    <section id="collect" class="features">
+        <div class="container">
+            <div class="section-title">
+            <h2>To Be Collected</h2>
+            </div>
+            <div id="map" style="width:100%;height:600px;"></div>
+        </div>
+    </section><!-- End collect Section -->
 
     </main><!-- End #main -->
   
@@ -465,6 +479,116 @@
         chart4.render();
     
     }
+</script>
+<script>
+ //Google Map Script
+
+ var customLabel = {
+        Rice: {
+          label: 'R'
+        },
+        Tea: {
+          label: 'T'
+        },
+        Coconut: {
+          label: 'C'
+        },
+        Spices: {
+          label: 'S'
+        },
+        Fruits_and_Vegetable: {
+          label: 'F&V'
+        },
+        Other: {
+          label: 'O'
+        }
+      };
+
+    function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: new google.maps.LatLng( 7.927079, 79.861244),
+        zoom: 7.8
+    });
+    var infoWindow = new google.maps.InfoWindow;
+
+        // Change this depending on the name of your PHP or XML file
+        downloadUrl('../includes/map/mapdata2.php', function(data) {
+        var xml = data.responseXML;
+        var markers = xml.documentElement.getElementsByTagName('marker');
+        Array.prototype.forEach.call(markers, function(markerElem) {
+        var linkid = markerElem.getAttribute('id');
+        var id = "Request Id : " + markerElem.getAttribute('id');
+        var type1 = markerElem.getAttribute('crop');
+        var type = "Content : " + markerElem.getAttribute('crop')+"["+markerElem.getAttribute('weight')+"KG]";
+        var name = "Farmer : " + markerElem.getAttribute('name');
+        var image = markerElem.getAttribute('image');
+        var date = "Harvested Date : " + markerElem.getAttribute('date');
+        var point = new google.maps.LatLng(
+            parseFloat(markerElem.getAttribute('lat')),
+            parseFloat(markerElem.getAttribute('lng')));
+
+        var infowincontent = document.createElement('div');
+        var strong = document.createElement('h3');
+        strong.textContent = id
+        infowincontent.appendChild(strong);
+        var typee = document.createElement('p');
+        typee.textContent = type
+        infowincontent.appendChild(typee);
+        var text = document.createElement('p');
+        text.textContent = name
+        infowincontent.appendChild(text);
+        var text1 = document.createElement('p');
+        text1.textContent = date
+        infowincontent.appendChild(text1);
+        var link = document.createElement('a');
+        var click = document.createElement('button');
+        link.setAttribute('href', "farmer/farmer.php?rqst_id="+linkid);
+        click.textContent = "View More"
+        click.setAttribute("class", "btn btn-outline-primary btn-sm");
+        link.appendChild(click);
+        infowincontent.appendChild(link); 
+        infowincontent.appendChild(document.createElement('br'));
+        infowincontent.appendChild(document.createElement('br'));
+        
+        var img = document.createElement("IMG");
+        img.setAttribute("src", "../uploads/"+image);
+        img.setAttribute("width", "200");
+        img.setAttribute("height", "150");
+        infowincontent.appendChild(img);   
+        var icon = customLabel[type1] || {};
+        var marker = new google.maps.Marker({
+            map: map,
+            position: point,
+            label: icon.label
+        });
+        marker.addListener('click', function() {
+            infoWindow.setContent(infowincontent);
+            infoWindow.open(map, marker);
+        });
+        });
+    });
+    }
+    
+    function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+        new ActiveXObject('Microsoft.XMLHTTP') :
+        new XMLHttpRequest;
+
+    request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+        request.onreadystatechange = doNothing;
+        callback(request, request.status);
+    }
+    };
+
+    request.open('GET', url, true);
+    request.send(null);
+    }
+
+    function doNothing() {}
+</script>
+<script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6XkaPZ0poj76FV4fvv39OPnVHeFKV8C0&callback=initMap">
 </script>
 
 

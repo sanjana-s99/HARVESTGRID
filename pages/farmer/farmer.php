@@ -33,9 +33,7 @@
     <div class="container d-flex align-items-center">
 
       <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>Harvestgrid</span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <h1 class="text-light"><a href="../../index.php"><span>Harvestgrid</span></a></h1>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
@@ -93,9 +91,9 @@
               <li><strong>Requested date</strong>: <?php echo $rqst_date ?></li>
               <li><strong>Request Status</strong>: <?php echo $rqst_status ?></li>
               <?php if($rqst_status=="New Request") { ?>
-                <li><a onclick='clicked1();' class="btn btn-sm btn-outline-success">Approve</a>   <a onclick='clicked2();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
+                <li><strong>Action</strong>: <a onclick='clicked1();' class="btn btn-sm btn-outline-success">Approve</a>   <a onclick='clicked2();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
               <?php }elseif($rqst_status=="Approved") { ?>
-                <li><a onclick='clicked4();' class="btn btn-sm btn-outline-warning">Collected</a>   <a onclick='clicked3();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
+                <li><strong>Action</strong>: <a onclick='clicked4();' class="btn btn-sm btn-outline-warning">Collected</a>   <a onclick='clicked3();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
               <?php } ?>
             </ul>
           </div>
