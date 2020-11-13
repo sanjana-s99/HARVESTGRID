@@ -92,9 +92,13 @@
               <li><strong>Request Status</strong>: <?php echo $rqst_status ?></li>
               <?php if($rqst_status=="New Request") { ?>
                 <li><strong>Action</strong>: <a onclick='clicked1();' class="btn btn-sm btn-outline-success">Approve</a>   <a onclick='clicked2();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
-              <?php }elseif($rqst_status=="Approved") { ?>
+              <?php }elseif($rqst_status=="Approved") { 
+                if($_SESSION['user_role']=="K" || $_SESSION['user_role']=="A"){ ?>
                 <li><strong>Action</strong>: <a onclick='clicked4();' class="btn btn-sm btn-outline-warning">Collected</a>   <a onclick='clicked3();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
-              <?php } ?>
+              <?php }}elseif($rqst_status == "Collected"){ 
+                if($_SESSION['user_role']=="K" || $_SESSION['user_role']=="A"){ ?>
+                <li><strong>Mark As</strong>: <a onclick='clicked5();' class="btn btn-sm btn-outline-success">Good Quality</a>   <a onclick='clicked6();' class="btn btn-sm btn-outline-danger">Poor Quality</a></li> 
+              <?php }} ?>
             </ul>
           </div>
         </div>
@@ -219,6 +223,44 @@
       }).then((result) => {
           if (result.value) {
               window.location.href="../../includes/cropaction.php?action=collected&rqst_id=<?php echo $rqst_id ?>";
+          }
+      })
+    }
+
+    function clicked6() {
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want mark as poor quality product',
+        imageUrl: '../../images/invalid.svg',
+        imageHeight: 250,
+        imageAlt: 'poor',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Poor Product',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href="../../includes/cropaction.php?action=pquality&rqst_id=<?php echo $rqst_id ?>";
+          }
+      })
+    }
+
+    function clicked5() {
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want marks as good quality product',
+        imageUrl: '../../images/pwresetdone.svg',
+        imageHeight: 250,
+        imageAlt: 'good',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Good Product',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+          if (result.value) {
+              window.location.href="../../includes/cropaction.php?action=gquality&rqst_id=<?php echo $rqst_id ?>";
           }
       })
     }

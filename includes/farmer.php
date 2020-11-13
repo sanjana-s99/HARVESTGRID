@@ -17,6 +17,13 @@
             $img1 = $row['image1'];
             $img2 = $row['image2'];
             $img3 = $row['image3'];
+            $rqst_quality = $row['quality'];
+            if($rqst_quality == "P")
+                $rqst_quality = "Poor";
+            elseif($rqst_quality == "G")
+                $rqst_quality = "Good";
+            else
+                $rqst_quality = "N/A";
             $rqst_status = $row['status'];
             if($rqst_status == "A")
                 $rqst_status = "Approved";
