@@ -86,6 +86,7 @@
             </div> 
             <ul>
               <li><strong>Crop Type</strong>: <?php echo $user_crop ?></li>
+              <li><strong>Location</strong>: <?php echo $address ?></li>
               <li><strong>Total Weight</strong>: <?php echo $rqst_weight ?></li>
               <li><strong>Harvested date</strong>: <?php echo $rqst_date ?></li>
               <li><strong>Requested date</strong>: <?php echo $rqst_date ?></li>

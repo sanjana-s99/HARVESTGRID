@@ -80,7 +80,7 @@ if (!isset($_SESSION["username"])) {
       $result = mysqli_query($con, $query);
       $query1 = "SELECT *  FROM users WHERE user_role = 'F'";
       $result1 = mysqli_query($con, $query1);
-      $query2 = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.rqst_id, farmerrqst.status, users.user_name, users.user_crop FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id";
+      $query2 = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.rqst_id, farmerrqst.status, users.user_name, users.user_crop, users.user_city FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id";
       $result2 = mysqli_query($con, $query2);
       if (!$result || !$result1) {
         die("FAILD!!" . mysqli_error());
@@ -109,6 +109,7 @@ if (!isset($_SESSION["username"])) {
                 <th>Request Id</th>
                 <th>Name</th>
                 <th>Crop Type</th>
+                <th>Location</th>
                 <th>Weight</th>
                 <th>Date</th>
                 <th>Status</th>
@@ -124,6 +125,7 @@ if (!isset($_SESSION["username"])) {
                 $w3 = $row2['weight'];
                 $w4 = $row2['date'];
                 $w5 = $row2['status'];
+                $w6 = $row2['user_city'];
 
                 if ($w5 == "A")
                   $w5 = "<span class='badge badge-success'> </span> Approved";
@@ -138,6 +140,7 @@ if (!isset($_SESSION["username"])) {
                 echo "<td>{$w0}</td>";
                 echo "<td>{$w1}</td>";
                 echo "<td>{$w2}</td>";
+                echo "<td>{$w6}</td>";
                 echo "<td>{$w3} KG</td>";
                 echo "<td>{$w4}</td>";
                 echo "<td>{$w5}</td>";
