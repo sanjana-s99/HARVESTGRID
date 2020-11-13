@@ -19,6 +19,16 @@
             mysqli_query($con, $query);
             header("Location: ../pages/farmer/farmer.php?rqst_id=$rqst_id");
             
+        }elseif ($_GET['action']=="gquality") {
+            $query = "UPDATE farmerrqst SET quality = 'G' WHERE rqst_id = {$rqst_id}";
+            mysqli_query($con, $query);
+            header("Location: ../pages/farmer/farmer.php?rqst_id=$rqst_id");
+            
+        }elseif ($_GET['action']=="pquality") {
+            $query = "UPDATE farmerrqst SET quality = 'P' WHERE rqst_id = {$rqst_id}";
+            mysqli_query($con, $query);
+            header("Location: ../pages/farmer/farmer.php?rqst_id=$rqst_id");
+            
         }
     }
 ?>
