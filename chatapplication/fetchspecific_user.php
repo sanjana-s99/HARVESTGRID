@@ -37,5 +37,4 @@
 	$output .= '</table>';
 
 	echo $output;
-
 ?>

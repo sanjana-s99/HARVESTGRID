@@ -1,9 +1,10 @@
 <?php
-    include "../includes/signup.php";
-    session_start(); 
+include "../includes/signup.php";
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,113 +19,118 @@
     <script>
         // Disable form submissions if there are invalid fields
         (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            // Get the forms we want to add validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-                }
-                form.classList.add('was-validated');
+            'use strict';
+            window.addEventListener('load', function() {
+                // Get the forms we want to add validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
             }, false);
-            });
-        }, false);
         })();
     </script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6XkaPZ0poj76FV4fvv39OPnVHeFKV8C0"></script>
     <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
-    <style type="text/css"> #map {width: 100%; height: 350px;} </style>
+    <style type="text/css">
+        #map {
+            width: 100%;
+            height: 350px;
+        }
+    </style>
     <link href="../assets/css/formstyle.css" rel="stylesheet">
 
 </head>
 
 <body>
-<!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
 
-      <div class="logo mr-auto">
-        <h1 class="text-light"><a href="index.html"><span>HarvestGrid</span></a></h1>
-      </div>
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="index.html"><span>HarvestGrid</span></a></h1>
+            </div>
 
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-            <li><a href="../index.php">Home</a></li>
-            <li class="get-started"><a href="signin.php">Sign In</a></li>
-        </ul>
-      </nav><!-- .nav-menu -->
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li><a href="../index.php">Home</a></li>
+                    <li class="get-started"><a href="signin.php">Sign In</a></li>
+                </ul>
+            </nav><!-- .nav-menu -->
 
-    </div>
-  </header><!-- End Header -->
-<div class="wrapper bg-white mt-sm-5">
-    <h4 class="pb-4 border-bottom">HarvestGrid Sign-Up</h4>
-    <form action="" class="needs-validation" method="post" novalidate>
-        <div class="py-2">
-            <div class="row py-2">
-                <div class="col-md-6 form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter Name" name="user_name" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+    </header><!-- End Header -->
+    <div class="wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom">HarvestGrid Sign-Up</h4>
+        <form action="" class="needs-validation" method="post" novalidate>
+            <div class="py-2">
+                <div class="row py-2">
+                    <div class="col-md-6 form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="user_name" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="col-md-6 pt-md-0 pt-3 form-group">
+                        <label for="nic">NIC Number : </label>
+                        <input type="text" class="form-control" id="nic" placeholder="Enter NIC Number" name="user_nic" pattern=".{10,12}" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please enter valid NIC number.</div>
+                    </div>
                 </div>
-                <div class="col-md-6 pt-md-0 pt-3 form-group">
-                    <label for="nic">NIC Number : </label>
-                    <input type="text" class="form-control" id="nic" placeholder="Enter NIC Number" name="user_nic" pattern=".{10,12}" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please enter valid NIC number.</div>
+                <div class="row py-2">
+                    <div class="col-md-6 form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter Email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please enter valid email address.</div>
+                    </div>
+                    <div class="col-md-6 pt-md-0 pt-3 form-group">
+                        <label for="tp">Contact Number:</label>
+                        <input type="text" class="form-control" id="tp" placeholder="Enter Contact Number" name="user_tp" pattern=".{10}" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please enter valid phone number.</div>
+                    </div>
                 </div>
-            </div>
-            <div class="row py-2">
-                <div class="col-md-6 form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please enter valid email address.</div>
+                <div class="row py-2">
+                    <div class="col-md-6 form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="user_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+                    </div>
+                    <div class="col-md-6 pt-md-0 pt-3 form-group">
+                        <label for="sel1">Product Type :</label>
+                        <select class="form-control" id="sel1" name="crop" placeholder="Select Your Product" require>
+                            <option value="Rice">Rice</option>
+                            <option value="Tea">Tea</option>
+                            <option value="Coconut">Coconut</option>
+                            <option value="Spices">Spices</option>
+                            <option value="Fruits_and_vegetable">Fruits and Vegetable</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Select A Product.</div>
+                    </div>
                 </div>
-                <div class="col-md-6 pt-md-0 pt-3 form-group">
-                    <label for="tp">Contact Number:</label>
-                    <input type="text" class="form-control" id="tp" placeholder="Enter Contact Number" name="user_tp" pattern=".{10}" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please enter valid phone number.</div>
-                </div>
-            </div>
-            <div class="row py-2">
-                <div class="col-md-6 form-group"> 
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="user_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
-                </div>
-                <div class="col-md-6 pt-md-0 pt-3 form-group">
-                    <label for="sel1">Product Type :</label>
-                    <select class="form-control" id="sel1" name="crop" placeholder="Select Your Product" require>
-                        <option value="Rice">Rice</option>
-                        <option value="Tea">Tea</option>
-                        <option value="Coconut">Coconut</option>
-                        <option value="Spices">Spices</option>
-                        <option value="Fruits_and_vegetable">Fruits and Vegetable</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Select A Product.</div>
-                </div>
-            </div>
-            <div class="row form-group">
+                <div class="row form-group">
                     <label for="sel1">Mark Your Location :</label>
                     <div id="map"></div>
                     <input type="hidden" name="lat" id="lat">
                     <input type="hidden" name="lng" id="lng">
-            </div>
+                </div>
             </div>
             <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Submit</button></div>
-        </div>
-        <?php show(); ?>
+    </div>
+    <?php show(); ?>
     </form>
-</div>
+    </div>
     <!--GMaps Script-->
     <script>
         // Get element references
@@ -139,11 +145,11 @@
         });
 
         // Listen to map idle event, listening to idle event more accurate than listening to ondrag event
-        google.maps.event.addListener(lp.map, 'idle', function (event) {
+        google.maps.event.addListener(lp.map, 'idle', function(event) {
             // Get current location and show it in HTML
             var location = lp.getMarkerPosition();
-            lat.value =  location.lat;
-            lng.value =  location.lng;
+            lat.value = location.lat;
+            lng.value = location.lng;
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -151,4 +157,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
+
 </html>
