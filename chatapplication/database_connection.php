@@ -208,6 +208,4 @@
 		$output .= '</ul>';
 		return $output;
 	}
-
-
 ?>

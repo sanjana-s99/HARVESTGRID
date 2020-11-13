@@ -13,5 +13,4 @@
     $statement = $connect->prepare($query);
 
     $statement->execute();
-
 ?>

@@ -1,6 +1,6 @@
 <?php
-    include('../../includes/db.php');
-    session_start();
+include('../../includes/db.php');
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,18 +12,20 @@
 </head>
 
 <body>
-<?php    
-    if (isset($_GET["key"]) && isset($_GET["email"])
-    && isset($_GET["action"]) && ($_GET["action"]=="verify")
-    && !isset($_POST["action"])){
-    $key = $_GET["key"];
-    $email = $_GET["email"];
-    $curDate = date("Y-m-d H:i:s");
-    $query = mysqli_query($con,"
+    <?php
+    if (
+        isset($_GET["key"]) && isset($_GET["email"])
+        && isset($_GET["action"]) && ($_GET["action"] == "verify")
+        && !isset($_POST["action"])
+    ) {
+        $key = $_GET["key"];
+        $email = $_GET["email"];
+        $curDate = date("Y-m-d H:i:s");
+        $query = mysqli_query($con, "
     SELECT * FROM verify WHERE `skey`='$key' and `email`='$email';");
-    $row = mysqli_num_rows($query);
-    if ($row==""){
-    $error .= '    <div class="container">
+        $row = mysqli_num_rows($query);
+        if ($row == "") {
+            $error .= '    <div class="container">
     <br><br><br><br><br><br>
                 <img class="mx-auto d-block" src="../../images/invalid.svg" style="max-width:400px;width:100%;">
                 <br>
@@ -47,42 +49,43 @@ or you have already used the key in which case it is deactivated.</h5>
 
                 </script>
     </div>';
-    }else{
-    $row = mysqli_fetch_assoc($query);
-    $expDate = $row['expDate'];
-    if ($expDate >= $curDate){
-        
-        mysqli_query($con,
-"UPDATE users SET `status`='A' WHERE `user_email`='$email';");	
+        } else {
+            $row = mysqli_fetch_assoc($query);
+            $expDate = $row['expDate'];
+            if ($expDate >= $curDate) {
 
-mysqli_query($con,"DELETE FROM verify WHERE `email`='$email';");
-        
+                mysqli_query(
+                    $con,
+                    "UPDATE users SET `status`='A' WHERE `user_email`='$email';"
+                );
+
+                mysqli_query($con, "DELETE FROM verify WHERE `email`='$email';");
+
     ?>
 
-    <div class="container">
-    <br><br><br><br><br><br>
-                <img class="mx-auto d-block" src="../../images/confirmed.svg" style="max-width:400px;width:100%;">
-                <h2 class="text-center mt-3">Email Confirmed</h2>
-                <h5 class="text-center mt-3">You will be redirected in <span id="counter"> 10 </span> second(s).</h5>
-                <script>
-                    function countdown() {
-                        var i = document.getElementById('counter');
-                        if (parseInt(i.innerHTML) <= 0) {
-                            location.href = '../signin.php';
+                <div class="container">
+                    <br><br><br><br><br><br>
+                    <img class="mx-auto d-block" src="../../images/confirmed.svg" style="max-width:400px;width:100%;">
+                    <h2 class="text-center mt-3">Email Confirmed</h2>
+                    <h5 class="text-center mt-3">You will be redirected in <span id="counter"> 10 </span> second(s).</h5>
+                    <script>
+                        function countdown() {
+                            var i = document.getElementById('counter');
+                            if (parseInt(i.innerHTML) <= 0) {
+                                location.href = '../signin.php';
+                            }
+                            if (parseInt(i.innerHTML) != 0) {
+                                i.innerHTML = parseInt(i.innerHTML) - 1;
+                            }
                         }
-                        if (parseInt(i.innerHTML) != 0) {
-                            i.innerHTML = parseInt(i.innerHTML) - 1;
-                        }
-                    }
-                    setInterval(function() {
-                        countdown();
-                    }, 1000);
-
-                </script>
-    </div>
+                        setInterval(function() {
+                            countdown();
+                        }, 1000);
+                    </script>
+                </div>
     <?php
-}else{
-    $error .= '    <div class="container">
+            } else {
+                $error .= '    <div class="container">
     <br><br><br><br><br><br>
                 <img class="mx-auto d-block" src="../../images/timeout.svg" style="max-width:500px;width:100%;">
                 <br>
@@ -105,12 +108,12 @@ mysqli_query($con,"DELETE FROM verify WHERE `email`='$email';");
 
                 </script>
     </div>';
-				}
-		}
-if($error!=""){
-	echo "<div>".$error."</div><br />";
-	}			
-} // isset email key validate end
+            }
+        }
+        if ($error != "") {
+            echo "<div>" . $error . "</div><br />";
+        }
+    } // isset email key validate end
     ?>
     <!--weuse-scripts-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

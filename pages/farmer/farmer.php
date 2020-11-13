@@ -90,6 +90,7 @@
               <li><strong>Harvested date</strong>: <?php echo $rqst_date ?></li>
               <li><strong>Requested date</strong>: <?php echo $rqst_date ?></li>
               <li><strong>Request Status</strong>: <?php echo $rqst_status ?></li>
+              <li><strong>Quality After Collected</strong>: <?php echo $rqst_quality ?></li>
               <?php if($rqst_status=="New Request") { ?>
                 <li><strong>Action</strong>: <a onclick='clicked1();' class="btn btn-sm btn-outline-success">Approve</a>   <a onclick='clicked2();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
               <?php }elseif($rqst_status=="Approved") { 
@@ -161,7 +162,7 @@
         showCancelButton: true,
         confirmButtonColor: '#ff5454',
         cancelButtonColor: '#ff5454',
-        confirmButtonText: 'Delete',
+        confirmButtonText: 'Approve',
         cancelButtonText: 'Cancel'
       }).then((result) => {
           if (result.value) {
@@ -180,7 +181,7 @@
         showCancelButton: true,
         confirmButtonColor: '#ff5454',
         cancelButtonColor: '#ff5454',
-        confirmButtonText: 'Delete',
+        confirmButtonText: 'Reject',
         cancelButtonText: 'Cancel'
       }).then((result) => {
           if (result.value) {
@@ -199,7 +200,7 @@
         showCancelButton: true,
         confirmButtonColor: '#ff5454',
         cancelButtonColor: '#ff5454',
-        confirmButtonText: 'Delete',
+        confirmButtonText: 'Reject',
         cancelButtonText: 'Cancel'
       }).then((result) => {
           if (result.value) {
@@ -218,7 +219,7 @@
         showCancelButton: true,
         confirmButtonColor: '#ff5454',
         cancelButtonColor: '#ff5454',
-        confirmButtonText: 'Delete',
+        confirmButtonText: 'Collected',
         cancelButtonText: 'Cancel'
       }).then((result) => {
           if (result.value) {

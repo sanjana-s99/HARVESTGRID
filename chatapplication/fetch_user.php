@@ -54,5 +54,4 @@
 	$output .= '</table>';
 
 	echo $output;
-
 ?>

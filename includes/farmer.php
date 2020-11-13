@@ -2,7 +2,7 @@
     require('db.php');
     if(isset($_GET["rqst_id"])){
         $rqst_id = $_GET["rqst_id"];
-        $query = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.image1, farmerrqst.image2, farmerrqst.image3, farmerrqst.rdate, farmerrqst.status, users.user_id, users.user_name, users.user_crop FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id WHERE rqst_id = $rqst_id";
+        $query = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.image1, farmerrqst.image2, farmerrqst.image3, farmerrqst.quality, farmerrqst.rdate, farmerrqst.status, users.user_id, users.user_name, users.user_crop FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id WHERE rqst_id = $rqst_id";
         $result = mysqli_query($con, $query);
         if(!$result){
             die("FAILD!!".mysqli_error());
