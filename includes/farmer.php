@@ -18,8 +18,8 @@
             $img2 = $row['image2'];
             $img3 = $row['image3'];
             $rqst_quality = $row['quality'];
-            if($rqst_quality == "B")
-                $rqst_quality = "Bad";
+            if($rqst_quality == "P")
+                $rqst_quality = "Poor";
             elseif($rqst_quality == "G")
                 $rqst_quality = "Good";
             else

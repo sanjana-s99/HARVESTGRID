@@ -42,17 +42,34 @@
         $query1 = "SELECT * FROM users WHERE user_email = '$user_email';";
         $result1 = mysqli_query($con,$query1);
         $check=mysqli_num_rows($result1);
+
+        //get user city through geocoordinates
+        $details_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" . $user_lat . ',' . $user_lng . "&key=AIzaSyC5YjkAepzUoPgY5mmhMdPkOXx4cXY4cbs&sensor=false";
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $details_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $loc = json_decode(curl_exec($ch), true);
+
+        if(count($loc['results']) != 0) {
+            $city = 'N/A';
+            foreach($loc['results'][0]['address_components'] as $addressComponent) {
+                if(in_array('locality', $addressComponent['types'])) {
+                    $city = $addressComponent['short_name'];
+                }
+                
+            }
+        }
         
         if($check>=1){
             $val=1;
         }else{
             
-            $query = "INSERT into users (user_nic, user_name, user_password, user_email, user_tp, user_gender, user_age ,user_crop, user_lat, user_lng) VALUES ('$user_nic' , '$user_name', '$user_password' , '$user_email', '$user_tp', '$user_gender' , '$user_age', '$user_crop', '$user_lat' , '$user_lng')"; //adding values to users table
+            $query = "INSERT into users (user_nic, user_name, user_password, user_email, user_tp, user_gender, user_age ,user_crop, user_lat, user_lng, user_city) VALUES ('$user_nic' , '$user_name', '$user_password' , '$user_email', '$user_tp', '$user_gender' , '$user_age', '$user_crop', '$user_lat' , '$user_lng' , '$city')"; //adding values to users table
             $result = mysqli_query($con,$query);
             if($result){            
                 mailsend();
-                $val=2;
-                setcookie("harvestgrid_user_name", $user_name, time()+100000, "/","", 0); //set cookie to store user_name            
+                $val=2;            
             }
         }
     }
