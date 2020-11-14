@@ -35,6 +35,7 @@
 	 if(isset($_GET['reapply'])){
 		$rqst_id = $_GET['reapply'];
 		$query = "UPDATE farmerrqst SET status = 'N' WHERE rqst_id = {$rqst_id}";
+		echo $query;
 		$result = mysqli_query($con,$query);
 		header("Location: ../pages/farmer/farmerdashboard.php");
 		if(!$result){

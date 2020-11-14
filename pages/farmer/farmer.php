@@ -1,6 +1,9 @@
 <?php
   include("../../includes/farmer.php");
   session_start();
+  if(!isset($_SESSION['user_id'])){
+      header("Location: ../signin.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,9 +101,10 @@
                 if($_SESSION['user_role']=="K" || $_SESSION['user_role']=="A"){ ?>
                 <li><strong>Action</strong>: <a onclick='clicked4();' class="btn btn-sm btn-outline-warning">Collected</a>   <a onclick='clicked3();' class="btn btn-sm btn-outline-danger">Reject</a></li> 
               <?php }}elseif($rqst_status == "Collected"){ 
-                if($_SESSION['user_role']=="K" || $_SESSION['user_role']=="A"){ ?>
+                if($_SESSION['user_role']=="K" || $_SESSION['user_role']=="A"){
+                  if($rqst_quality == "N/A"){ ?>
                 <li><strong>Mark As</strong>: <a onclick='clicked5();' class="btn btn-sm btn-outline-success">Good Quality</a>   <a onclick='clicked6();' class="btn btn-sm btn-outline-danger">Poor Quality</a></li> 
-              <?php }} ?>
+              <?php }}} ?>
             </ul>
           </div>
         </div>
