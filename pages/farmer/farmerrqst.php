@@ -38,35 +38,62 @@ include "../../includes/farmerrqst.php";
         </div>
     </header><!-- End Header -->
     <br><br><br>
-    <div class="wrapper bg-white mt-sm-5">
-        <h4 class="pb-4 border-bottom">HarvestGrid - Request For Pickup</h4>
-        <form action="" method="post" enctype="multipart/form-data">
-            <div class="py-2">
-                <div class="row py-2">
-                    <label for="weight">Total Weight:</label>
-                    <input type="number" class="form-control" id="weight" placeholder="Enter Weight(KG)" name="weight" required>
+    <?php if ($_SESSION['user_role'] == "F") { ?>
+        <div class="wrapper bg-white mt-sm-5">
+            <h4 class="pb-4 border-bottom">HarvestGrid - Request For Pickup</h4>
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="py-2">
+                    <div class="row py-2">
+                        <label for="weight">Total Weight:</label>
+                        <input type="number" class="form-control" id="weight" placeholder="Enter Weight(KG)" name="weight" required>
+                    </div>
+                    <div class="row py-2">
+                        <label for="date">Harvested Date:</label>
+                        <input type="date" class="form-control" id="date" placeholder="Enter Harvested Date" name="date" required>
+                    </div>
+                    <div class="row py-2">
+                        <label for="img1">Image To Prove #1:</label>
+                        <input type="file" class="form-control" id="file1" placeholder="Add Image" name="img1" required>
+                    </div>
+                    <div class="row py-2">
+                        <label for="img2">Image To Prove #2:</label>
+                        <input type="file" class="form-control" id="file2" placeholder="Add Image" name="img2" required>
+                    </div>
+                    <div class="row py-2">
+                        <label for="img3">Image To Prove #3: [If Need]</label>
+                        <input type="file" class="form-control" id="file3" placeholder="Add Image" name="img3">
+                    </div>
                 </div>
-                <div class="row py-2">
-                    <label for="date">Harvested Date:</label>
-                    <input type="date" class="form-control" id="date" placeholder="Enter Harvested Date" name="date" required>
-                </div>
-                <div class="row py-2">
-                    <label for="img1">Image To Prove #1:</label>
-                    <input type="file" class="form-control" id="file1" placeholder="Add Image" name="img1" required>
-                </div>
-                <div class="row py-2">
-                    <label for="img2">Image To Prove #2:</label>
-                    <input type="file" class="form-control" id="file2" placeholder="Add Image" name="img2" required>
-                </div>
-                <div class="row py-2">
-                    <label for="img3">Image To Prove #3: [If Need]</label>
-                    <input type="file" class="form-control" id="file3" placeholder="Add Image" name="img3">
-                </div>
-            </div>
-            <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Submit</button></div>
-        </form>
-        <?php show(); ?>
-    </div>
+                <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Submit</button></div>
+            </form>
+            <?php show(); ?>
+        </div>
+
+    <?php
+    } else { ?>
+        <div class="container">
+            <br><br><br>
+            <img class="mx-auto d-block" src="../../images/passinstructionsent.svg" style="max-width:400px;width:100%;">
+            <h2 class="text-center mt-3">Accedd Denied!</h2>
+            <h5 class="text-center mt-3">You will be redirected in <span id="counter"> 5 </span> second(s).</h5>
+            <script>
+                function countdown() {
+                    var i = document.getElementById('counter');
+                    if (parseInt(i.innerHTML) <= 0) {
+                        location.href = '../../index.php';
+                    }
+                    if (parseInt(i.innerHTML) != 0) {
+                        i.innerHTML = parseInt(i.innerHTML) - 1;
+                    }
+                }
+                setInterval(function() {
+                    countdown();
+                }, 1000);
+            </script>
+        </div>
+        <br><br><br>
+    <?php } ?>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

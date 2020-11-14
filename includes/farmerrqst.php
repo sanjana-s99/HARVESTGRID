@@ -2,8 +2,9 @@
     global $val;
     require "../../includes/db.php";
     session_start();
-
-
+    if(!isset($_SESSION['user_id'])){
+        header("Location: ../signin.php");
+    }
     $name = $_SESSION['username'];
     $user_id = $_SESSION['user_id'];
 
@@ -65,4 +66,3 @@
                         </script>";
             }
         }
-?>

@@ -1,12 +1,12 @@
 <?php
     require('db.php');
+    session_start();
+    if(!isset($_SESSION['user_id'])){
+        header("Location: signin.php");
+    }
     global $val;
     global $user_email;
     global $user_name;
-
-    if($_SESSION['username']!="Web_Master"){
-        header("Location: http://localhost/harvesTGRID/index.php");
-    }
 
     if (isset($_REQUEST['user_name'])){
         $user_nic = stripslashes($_REQUEST['user_nic']);// removes backslashes

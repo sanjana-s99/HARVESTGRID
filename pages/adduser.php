@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "../includes/adduser.php";
 ?>
 <!DOCTYPE html>
@@ -41,60 +40,87 @@ include "../includes/adduser.php";
 
         </div>
     </header><!-- End Header -->
-    <div class="wrapper bg-white mt-sm-5">
-        <h4 class="pb-4 border-bottom">HarvestGrid Add - Staff Members</h4>
-        <form action="" class="needs-validation" method="post" novalidate>
-            <div class="py-2">
-                <div class="row py-2">
-                    <div class="col-md-6 form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Name" name="user_name" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please fill out this field.</div>
+    <?php if ($_SESSION['user_role'] == "A") { ?>
+        <div class="wrapper bg-white mt-sm-5">
+            <h4 class="pb-4 border-bottom">HarvestGrid Add - Staff Members</h4>
+            <form action="" class="needs-validation" method="post" novalidate>
+                <div class="py-2">
+                    <div class="row py-2">
+                        <div class="col-md-6 form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter Name" name="user_name" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div class="col-md-6 pt-md-0 pt-3 form-group">
+                            <label for="nic">NIC Number : </label>
+                            <input type="text" class="form-control" id="nic" placeholder="Enter NIC Number" name="user_nic" pattern=".{10,12}" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please enter valid NIC number.</div>
+                        </div>
                     </div>
-                    <div class="col-md-6 pt-md-0 pt-3 form-group">
-                        <label for="nic">NIC Number : </label>
-                        <input type="text" class="form-control" id="nic" placeholder="Enter NIC Number" name="user_nic" pattern=".{10,12}" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please enter valid NIC number.</div>
+                    <div class="row py-2">
+                        <div class="col-md-6 form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter Email" id="user_email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please enter valid email address.</div>
+                        </div>
+                        <div class="col-md-6 pt-md-0 pt-3 form-group">
+                            <label for="tp">Contact Number:</label>
+                            <input type="text" class="form-control" id="tp" placeholder="Enter Contact Number" id="user_tp" name="user_tp" pattern=".{10}" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please enter valid phone number.</div>
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-md-6 pt-md-0 form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="user_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+                        </div>
+                        <div class="col-md-6 pt-md-0 pt-3 form-group">
+                            <label for="sel1">Account Type :</label>
+                            <select class="form-control" id="sel1" name="user_role" placeholder="Select Your Product" require>
+                                <option value="S">DoA Staff</option>
+                                <option value="K">Kells Staff</option>
+                            </select>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Select A Product.</div>
+                        </div>
                     </div>
                 </div>
-                <div class="row py-2">
-                    <div class="col-md-6 form-group">
-                        <label for="email">Email Address:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter Email" id="user_email" name="user_email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please enter valid email address.</div>
-                    </div>
-                    <div class="col-md-6 pt-md-0 pt-3 form-group">
-                        <label for="tp">Contact Number:</label>
-                        <input type="text" class="form-control" id="tp" placeholder="Enter Contact Number" id="user_tp" name="user_tp" pattern=".{10}" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please enter valid phone number.</div>
-                    </div>
-                </div>
-                <div class="row py-2">
-                    <div class="col-md-6 pt-md-0 form-group">
-                        <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="user_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
-                    </div>
-                    <div class="col-md-6 pt-md-0 pt-3 form-group">
-                        <label for="sel1">Account Type :</label>
-                        <select class="form-control" id="sel1" name="user_role" placeholder="Select Your Product" require>
-                            <option value="S">DoA Staff</option>
-                            <option value="K">Kells Staff</option>
-                        </select>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Select A Product.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Submit</button></div>
-    </div>
-    <?php show(); ?>
-    </form>
+                <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Submit</button></div>
+        </div>
+        <?php show(); ?>
+        </form>
+
+    <?php
+    } else { ?>
+        <div class="container">
+            <br><br><br>
+            <img class="mx-auto d-block" src="../images/passinstructionsent.svg" style="max-width:400px;width:100%;">
+            <h2 class="text-center mt-3">Accedd Denied!</h2>
+            <h5 class="text-center mt-3">You will be redirected in <span id="counter"> 5 </span> second(s).</h5>
+            <script>
+                function countdown() {
+                    var i = document.getElementById('counter');
+                    if (parseInt(i.innerHTML) <= 0) {
+                        location.href = '../index.php';
+                    }
+                    if (parseInt(i.innerHTML) != 0) {
+                        i.innerHTML = parseInt(i.innerHTML) - 1;
+                    }
+                }
+                setInterval(function() {
+                    countdown();
+                }, 1000);
+            </script>
+        </div>
+        <br><br><br>
+    <?php } ?>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

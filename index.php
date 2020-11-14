@@ -158,7 +158,7 @@ include("includes/charts.php");
         $query = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.rqst_id, users.user_name, users.user_crop FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id WHERE farmerrqst.status = 'N'";
         $result = mysqli_query($con, $query);
         if (!$result) {
-          die("FAILD!!" . mysqli_error());
+          die("FAILD!!" . mysqli_error($con));
         }
     ?>
         <!-- ======= Farmers Section ======= -->
@@ -237,16 +237,16 @@ include("includes/charts.php");
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                   <div class="icon"><i class="icofont-dashboard-web"></i></div>
-                  <h4 class="title"><a href="pages/farmer/farmerdashboard.php">View Request Status</a></h4>
-                  <p class="description">View Active Requests</p>
+                  <h4 class="title"><a href="pages/farmer/farmerdashboard.php">Dashboard</a></h4>
+                  <p class="description">View Profile Data And Crop Requests</p>
                 </div>
               </div>
 
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-                  <div class="icon"><i class="icofont-truck-loaded"></i></div>
-                  <h4 class="title"><a href="#">Comming Soon...</a></h4>
-                  <p class="description">Stay Tuned!!</p>
+                  <div class="icon"><i class="icofont-edit"></i></div>
+                  <h4 class="title"><a href="pages/editprofile.php">Edit Profile</a></h4>
+                  <p class="description">Edit Your Personal Details</p>
                 </div>
               </div>
 
@@ -288,9 +288,9 @@ include("includes/charts.php");
 
               <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
                 <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-                  <div class="icon"><i class="icofont-truck-loaded"></i></div>
-                  <h4 class="title"><a href="#">Comming Soon...</a></h4>
-                  <p class="description">Stay Tuned!!</p>
+                  <div class="icon"><i class="icofont-edit"></i></div>
+                  <h4 class="title"><a href="pages/editprofile.php">Edit Profile</a></h4>
+                  <p class="description">Edit Your Personal Details</p>
                 </div>
               </div>
 
@@ -427,7 +427,8 @@ include("includes/charts.php");
           text: "New Harvest Requests"
         },
         data: [{
-          type: "bar", //change type to bar, line, area, pie, etc  
+          type: "pie", //change type to bar, line, area, pie, etc  
+          indexLabel: "{label} - #percent%",
           yValueFormatString: "#,##0KG",
           dataPoints: <?php echo json_encode($tobeapproved, JSON_NUMERIC_CHECK); ?>
         }]
@@ -441,7 +442,8 @@ include("includes/charts.php");
           text: "Collected Harvest"
         },
         data: [{
-          type: "bar", //change type to bar, line, area, pie, etc  
+          type: "pie", //change type to bar, line, area, pie, etc 
+          indexLabel: "{label} - #percent%", 
           yValueFormatString: "#,##0KG",
           dataPoints: <?php echo json_encode($collected, JSON_NUMERIC_CHECK); ?>
         }]

@@ -5,7 +5,7 @@
         $query = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.image1, farmerrqst.image2, farmerrqst.image3, farmerrqst.quality, farmerrqst.rdate, farmerrqst.status, users.user_id, users.user_name, users.user_crop, users.user_lat, users.user_lng FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id WHERE rqst_id = $rqst_id";
         $result = mysqli_query($con, $query);
         if(!$result){
-            die("FAILD!!".mysqli_error());
+            die("FAILD!!".mysqli_error($con));
         }
         while($row = mysqli_fetch_assoc($result)){
             $user_id = $row['user_id'];

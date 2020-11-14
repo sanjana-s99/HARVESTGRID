@@ -43,10 +43,11 @@ if (!isset($_SESSION["username"])) {
           <ul>
             <li><a href="#collect">To Be Collected</a></li>
             <li><a href="#crop">Crop Requests</a></li>
+            <li><a href="#quality">Product Quality</a></li>
             <?php if ($_SESSION['user_role'] == "A") { ?>
-              <li><a href="#staff">Staff Members</a></li>
+              <li><a href="#staff">Staff Member</a></li>
             <?php } ?>
-            <li><a href="#farmer">Farmers</a></li>
+            <li><a href="#farmer">Farmer</a></li>
             <li><a href="#stats">Statistics</a></li>
             <?php if (isset($_SESSION['username'])) { ?>
               <li><a><?php echo "Hi, " . $_SESSION['username']; ?></a></li>
@@ -76,6 +77,7 @@ if (!isset($_SESSION["username"])) {
       </section><!-- End Breadcrumbs Section -->
 
       <?php
+      if ($_SESSION['user_role'] != "F") {
       $query = "SELECT *  FROM users WHERE user_role = 'S' OR user_role = 'k'";
       $result = mysqli_query($con, $query);
       $query1 = "SELECT *  FROM users WHERE user_role = 'F'";
@@ -83,7 +85,7 @@ if (!isset($_SESSION["username"])) {
       $query2 = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.rqst_id, farmerrqst.status, users.user_name, users.user_crop, users.user_city FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id";
       $result2 = mysqli_query($con, $query2);
       if (!$result || !$result1) {
-        die("FAILD!!" . mysqli_error());
+        die("FAILD!!" . mysqli_error($con));
       }
       ?>
 
@@ -155,6 +157,15 @@ if (!isset($_SESSION["username"])) {
         </div>
       </section><!-- End crop rqst Section -->
 
+      <!-- ======= quality Section ======= -->
+      <section id="quality" class="features">
+        <div class="container">
+          <div class="section-title">
+            <h2>Product Quality</h2>
+          </div>
+        </div>
+      </section><!-- End quality Section -->
+
       <?php if ($_SESSION['user_role'] == "A") { ?>
 
         <!-- ======= Staff Section ======= -->
@@ -224,11 +235,9 @@ if (!isset($_SESSION["username"])) {
               <tr>
                 <th>Name</th>
                 <th>NIC</th>
-                <th>Email</th>
                 <th>Contact Number</th>
-                <th>Gender</th>
-                <th>Age</th>
-                <th>Action</th>
+                <th>city</th>
+                <th width="18%">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -236,32 +245,34 @@ if (!isset($_SESSION["username"])) {
               while ($row1 = mysqli_fetch_assoc($result1)) {
                 $v0 = $row1['user_name'];
                 $v1 = $row1['user_nic'];
-                $v2 = $row1['user_email'];
                 $v3 = $row1['user_tp'];
-                $v4 = $row1['user_gender'];
-                $v5 = $row1['user_age'];
                 $v6 = $row1['user_id'];
                 $v7 = $row1['status'];
+                $v8 = $row1['user_city'];
                 echo "<tr>";
                 echo "<td>{$v0}</td>";
                 echo "<td>{$v1}</td>";
-                echo "<td>{$v2}</td>";
                 echo "<td>{$v3}</td>";
-                if ($v4 == "M")
-                  echo "<td >Male</td>";
-                elseif ($v4 == "F")
-                  echo "<td>Female</td>";
-                echo "<td>{$v5}</td>";
+                echo "<td>{$v8}</td>";
                 if ($v7 == "N")
-                  echo "<td><a onclick='clicked2();' class='btn btn-outline-success btn-sm' id='farmerval1' name='$v6'>Approve</a></td>";
+                  echo "<td><a onclick='clicked2();' class='btn btn-outline-success btn-sm' id='farmerval1' name='$v6'>Approve</a> <a href='farmer/farmerprofile.php?user_id=$v6' class='btn btn-outline-primary btn-sm'>View Profile</a></td>";
                 else
-                  echo "<td><a onclick='clicked();' class='btn btn-outline-danger btn-sm' id='farmerval' name='$v6'>Remove</a></td>";
+                  echo "<td><a onclick='clicked();' class='btn btn-outline-danger btn-sm' id='farmerval' name='$v6'>Remove</a> <a href='farmer/farmerprofile.php?user_id=$v6' class='btn btn-outline-primary btn-sm'>View Profile</a></td>";
                 echo "</tr>";
               }
 
               ?>
             </tbody>
-          </table>
+          </table><br><br>
+          <?php if($_SESSION['user_role']=="S" || $_SESSION['user_role']=="A"){ ?>
+            <table width="100%">
+              <tr>
+                <td>
+                  <div id="chartContainer5" style="height: 370px;"></div>
+                </td>
+              </tr>
+            </table>
+          <?php } ?>
         </div>
       </section><!-- End Farmer Section -->
 
@@ -298,6 +309,31 @@ if (!isset($_SESSION["username"])) {
       </section><!-- End stats Section -->
 
     </main><!-- End #main -->
+
+    <?php
+    } else { ?>
+        <div class="container">
+            <br><br><br>
+            <img class="mx-auto d-block" src="../images/passinstructionsent.svg" style="max-width:400px;width:100%;">
+            <h2 class="text-center mt-3">Accedd Denied!</h2>
+            <h5 class="text-center mt-3">You will be redirected in <span id="counter"> 5 </span> second(s).</h5>
+            <script>
+                function countdown() {
+                    var i = document.getElementById('counter');
+                    if (parseInt(i.innerHTML) <= 0) {
+                        location.href = '../index.php';
+                    }
+                    if (parseInt(i.innerHTML) != 0) {
+                        i.innerHTML = parseInt(i.innerHTML) - 1;
+                    }
+                }
+                setInterval(function() {
+                    countdown();
+                }, 1000);
+            </script>
+        </div>
+        <br><br><br>
+    <?php } ?>
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
@@ -396,7 +432,7 @@ if (!isset($_SESSION["username"])) {
           showCancelButton: true,
           confirmButtonColor: '#ff5454',
           cancelButtonColor: '#ff5454',
-          confirmButtonText: 'Delete',
+          confirmButtonText: 'Approve',
           cancelButtonText: 'Cancel'
         }).then((result) => {
           if (result.value) {
@@ -428,8 +464,6 @@ if (!isset($_SESSION["username"])) {
           },
           data: [{
             type: "pie", //change type to bar, line, area, pie, etc  
-            showInLegend: "true",
-            legendText: "{label}",
             indexLabelFontSize: 16,
             indexLabel: "{label} - #percent%",
             yValueFormatString: "#,##0KG",
@@ -446,8 +480,6 @@ if (!isset($_SESSION["username"])) {
           },
           data: [{
             type: "pie", //change type to bar, line, area, pie, etc  
-            showInLegend: "true",
-            legendText: "{label}",
             indexLabelFontSize: 16,
             indexLabel: "{label} - #percent%",
             yValueFormatString: "#,##0KG",
@@ -464,8 +496,6 @@ if (!isset($_SESSION["username"])) {
           },
           data: [{
             type: "pie", //change type to bar, line, area, pie, etc  
-            showInLegend: "true",
-            legendText: "{label}",
             indexLabelFontSize: 16,
             indexLabel: "{label} - #percent%",
             yValueFormatString: "#,##0KG",
@@ -482,8 +512,6 @@ if (!isset($_SESSION["username"])) {
           },
           data: [{
             type: "pie", //change type to bar, line, area, pie, etc  
-            showInLegend: "true",
-            legendText: "{label}",
             indexLabelFontSize: 16,
             indexLabel: "{label} - #percent%",
             yValueFormatString: "#,##0KG",
@@ -491,10 +519,25 @@ if (!isset($_SESSION["username"])) {
           }]
         });
 
+        var chart5 = new CanvasJS.Chart("chartContainer5", {
+          animationEnabled: true,
+          exportEnabled: true,
+          theme: "light2", // "light1", "light2", "dark1", "dark2"
+          title: {
+            text: "Farmer's Locations"
+          },
+          data: [{
+            type: "column", //change type to bar, line, area, pie, etc  
+            yValueFormatString: "#,##0",
+            dataPoints: <?php echo json_encode($farmers_city, JSON_NUMERIC_CHECK); ?>
+          }]
+        });
+
         chart1.render();
         chart2.render();
         chart3.render();
         chart4.render();
+        chart5.render();
 
       }
     </script>
