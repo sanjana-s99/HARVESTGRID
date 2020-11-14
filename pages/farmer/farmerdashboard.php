@@ -263,7 +263,7 @@ if (!isset($_SESSION['user_id'])) {
   <div class="container">
     <br><br><br>
     <img class="mx-auto d-block" src="../../images/passinstructionsent.svg" style="max-width:400px;width:100%;">
-    <h2 class="text-center mt-3">Accedd Denied!</h2>
+    <h2 class="text-center mt-3">Access Denied!</h2>
     <h5 class="text-center mt-3">You will be redirected in <span id="counter"> 5 </span> second(s).</h5>
     <script>
       function countdown() {
