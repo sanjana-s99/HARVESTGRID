@@ -16,6 +16,8 @@ if (!isset($_SESSION['user_id'])) {
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <link rel='shortcut icon' type='image/x-icon' href='../../images/favicon.svg' />
+  
   <!-- Template Main CSS File -->
   <link href="../../assets/css/style.css" rel="stylesheet">
 

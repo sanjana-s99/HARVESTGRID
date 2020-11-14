@@ -16,6 +16,8 @@ if (!isset($_SESSION['user_id'])) {
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <link rel='shortcut icon' type='image/x-icon' href='../../images/favicon.svg' />
+
   <!-- Vendor CSS Files -->
   <link href="../../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
