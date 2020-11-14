@@ -427,8 +427,7 @@ include("includes/charts.php");
           text: "New Harvest Requests"
         },
         data: [{
-          type: "pie", //change type to bar, line, area, pie, etc  
-          indexLabel: "{label} - #percent%",
+          type: "column", //change type to bar, line, area, pie, etc  
           yValueFormatString: "#,##0KG",
           dataPoints: <?php echo json_encode($tobeapproved, JSON_NUMERIC_CHECK); ?>
         }]
@@ -442,8 +441,7 @@ include("includes/charts.php");
           text: "Collected Harvest"
         },
         data: [{
-          type: "pie", //change type to bar, line, area, pie, etc 
-          indexLabel: "{label} - #percent%", 
+          type: "column", //change type to bar, line, area, pie, etc 
           yValueFormatString: "#,##0KG",
           dataPoints: <?php echo json_encode($collected, JSON_NUMERIC_CHECK); ?>
         }]
