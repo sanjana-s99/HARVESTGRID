@@ -1,8 +1,8 @@
 <?php
 include("../../includes/db.php");
 session_start();
-if(!isset($_SESSION['user_id'])){
-    header("Location: ../signin.php");
+if (!isset($_SESSION['user_id'])) {
+  header("Location: ../signin.php");
 }
 ?>
 <!DOCTYPE html>
@@ -82,9 +82,34 @@ if(!isset($_SESSION['user_id'])){
         $user_id = $_GET['user_id'];
         $query = "SELECT *  FROM users WHERE user_id = $user_id";
         $result = mysqli_query($con, $query);
-        if (!$result) {
+        $query1 = "SELECT COUNT(rqst_id) FROM farmerrqst WHERE user_id = $user_id AND status = 'N'";
+        $result1 = mysqli_query($con, $query1);
+        $query2 = "SELECT COUNT(rqst_id) FROM farmerrqst WHERE user_id = $user_id AND status = 'A'";
+        $result2 = mysqli_query($con, $query2);
+        $query3 = "SELECT COUNT(rqst_id) FROM farmerrqst WHERE user_id = $user_id AND status = 'C'";
+        $result3 = mysqli_query($con, $query3);
+        $query4 = "SELECT COUNT(rqst_id) FROM farmerrqst WHERE user_id = $user_id AND status = 'R'";
+        $result4 = mysqli_query($con, $query4);
+        if (!$result || !$result1 || !$result2 || !$result3 || !$result4) {
           die("FAILD!!" . mysqli_error($con));
         }
+
+        while ($row1 = mysqli_fetch_assoc($result1)) {
+          $new = $row1['COUNT(rqst_id)'];
+        }
+
+        while ($row2 = mysqli_fetch_assoc($result2)) {
+          $approved = $row2['COUNT(rqst_id)'];
+        }
+
+        while ($row3 = mysqli_fetch_assoc($result3)) {
+          $collected = $row3['COUNT(rqst_id)'];
+        }
+
+        while ($row4 = mysqli_fetch_assoc($result4)) {
+          $rejected = $row4['COUNT(rqst_id)'];
+        }
+
         while ($row = mysqli_fetch_assoc($result)) {
           $name = $row['user_name'];
           $nic = $row['user_nic'];
@@ -128,17 +153,31 @@ if(!isset($_SESSION['user_id'])){
                 <div class="media align-items-end profile-head">
                   <div class="profile mr-3"><img src="../../uploads/propic/<?php echo $img; ?>" alt="NoProPic" width="130" class="rounded mb-2 img-thumbnail"></div>
                   <div class="media-body mb-5 text-white">
-                    <h4 class="mt-0 mb-0"> <?php echo $name; ?></h4>
-                    <p class="small mb-4"><i class="fas fa-map-marker-alt mr-2"></i><?php echo "Crop Type : " . $crop; ?></p>
+                    <div class="float-left">
+                      <h4 class="mt-0 mb-0"> <?php echo $name; ?></h4>
+                      <p class="small mb-4"><i class="icofont-basket"></i> <?php echo "Crop Type : " . $crop; ?></p>
+                    </div>
+                    <div class="float-right p-4 d-flex justify-content-end text-center">
+                      <ul class="list-inline mb-0">
+                        <li class="list-inline-item">
+                          <h5 class="font-weight-bold mb-0 d-block"><?php echo $rating; ?>/10<i class="icofont-star"></i></h5><small class="text-muted">Quality Rating</small>
+                        </li>
+                        <li class="list-inline-item">
+                          <h5 class="font-weight-bold mb-0 d-block"><?php echo $new; ?></h5><small class="text-muted">New</small>
+                        </li>
+                        <li class="list-inline-item">
+                          <h5 class="font-weight-bold mb-0 d-block"><?php echo $approved; ?></h5><small class="text-muted">Approved</small>
+                        </li>
+                        <li class="list-inline-item">
+                          <h5 class="font-weight-bold mb-0 d-block"><?php echo $collected; ?></h5><small class="text-muted">Collected</small>
+                        </li>
+                        <li class="list-inline-item">
+                          <h5 class="font-weight-bold mb-0 d-block"><?php echo $rejected; ?></h5><small class="text-muted">Rejected</small>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="bg-light p-4 d-flex justify-content-end text-center">
-                <ul class="list-inline mb-0">
-                  <li class="list-inline-item">
-                    <h5 class="font-weight-bold mb-0 d-block"><?php echo $rating ?>/10<i class="icofont-star"></i></h5><small class="text-muted">Quality Rating</small>
-                  </li>
-                </ul>
               </div>
               <div class="px-4 py-3">
                 <h5 class="mb-0">About</h5>
@@ -297,6 +336,7 @@ if(!isset($_SESSION['user_id'])){
     new google.maps.Marker({
       position: myLatLng,
       map,
+      icon: '../../images/icon.png'
     });
   }
 </script>

@@ -18,8 +18,8 @@
     $query5 = "SELECT  COUNT(user_city) AS 'y', user_city AS 'x' FROM users WHERE user_role = 'F' GROUP BY user_city";
     $result5 = mysqli_query($con, $query5);
 
-    if(!$result1 || !$result2 || !$result3 || !$result4){
-        die("FAILD!!".mysqli_error());
+    if(!$result1 || !$result2 || !$result3 || !$result4 || !$result5){
+        die("FAILD!!".mysqli_error($con));
     }
 
     while($row1 = mysqli_fetch_assoc($result1)){
