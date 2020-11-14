@@ -43,7 +43,7 @@
         $result1 = mysqli_query($con,$query1);
         $check=mysqli_num_rows($result1);
 
-        //get user city through geocoordinates
+        //get user city through geocoordinates 
         $details_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" . $user_lat . ',' . $user_lng . "&key=AIzaSyC5YjkAepzUoPgY5mmhMdPkOXx4cXY4cbs&sensor=false";
 
         $ch = curl_init();
