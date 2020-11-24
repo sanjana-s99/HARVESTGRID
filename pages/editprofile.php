@@ -14,6 +14,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $name = $row['user_name'];
     $nic = $row['user_nic'];
     $tp = $row['user_tp'];
+    $img = $row['user_img'];
 }
 ?>
 <!DOCTYPE html>
@@ -62,7 +63,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="container d-flex align-items-center">
 
             <div class="logo mr-auto">
-                <h1 class="text-light"><a href="index.html"><span>HarvestGrid</span></a></h1>
+                <h1 class="text-light"><a href="../index.php"><span>HarvestGrid</span></a></h1>
             </div>
 
             <nav class="nav-menu d-none d-lg-block">
@@ -112,12 +113,14 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please enter valid phone number.</div>
                     </div>
-                    <div class="row py-2">
-                        <label for="img">Profile Picture:</label>
-                        <input type="file" class="form-control" id="file" placeholder="Add Image" name="img" required>
-                        <div class="valid-feedback">Valid.</div>
-                        <div class="invalid-feedback">Please add valid image.</div>
-                    </div>
+                    <?php if ($img == "nopropic.webp") { ?>
+                        <div class="row py-2">
+                            <label for="img">Profile Picture:</label>
+                            <input type="file" class="form-control" id="file" placeholder="Add Image" name="img" required>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please add valid image.</div>
+                        </div>
+                    <?php } ?>
                     <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
                 </div>
                 <div class="py-3 pb-4 border-bottom"> <button type="submit" class="btn btn-primary mr-3">Update</button></div>

@@ -1,9 +1,9 @@
 <?php
-include("../../includes/db.php");
-session_start();
-if (!isset($_SESSION['user_id'])) {
-  header("Location: ../signin.php");
-}
+  include("../../includes/db.php");
+  session_start();
+  if (!isset($_SESSION['user_id'])) {
+    header("Location: ../signin.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,6 +128,7 @@ if (!isset($_SESSION['user_id'])) {
           $rating = $row['user_rating'];
           $v6 = $row['user_lat'];
           $v7 = $row['user_lng'];
+          $statuss = $row['status'];
 
           //get address using lat,lng
           $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" . $v6 . ',' . $v7 . "&key=AIzaSyC5YjkAepzUoPgY5mmhMdPkOXx4cXY4cbs&sensor=false";
@@ -191,6 +192,13 @@ if (!isset($_SESSION['user_id'])) {
                     <p class="font-italic mb-0"><strong>NIC No : </strong> <?php echo $nic; ?></p>
                     <p class="font-italic mb-0"><strong>Email : </strong> <?php echo $email; ?></p>
                     <p class="font-italic mb-0"><strong>Contact No : </strong> <?php echo $tp; ?></p>
+                    <br>
+                    <?php if ($statuss == "N"){ ?>
+                      <a onclick='clicked1();' class='btn btn-outline-success btn-sm btn-block' id='farmerval1' name=<?php echo $user_id; ?> >Approve</a>
+                    <?php }else{ ?>
+                      <a onclick='clicked();' class='btn btn-outline-danger btn-sm btn-block' id='farmerval' name=<?php echo $user_id; ?> >Remove</a>
+                    <?php } ?>
+              
                   </div>
                   <div id="map" style="width:50%;height:200px;" class="col"></div>
                 </div>
@@ -341,6 +349,47 @@ if (!isset($_SESSION['user_id'])) {
       icon: '../../images/icon.png'
     });
   }
+
+  function clicked() {
+    var value1 = document.getElementById("farmerval").name;
+    Swal.fire({
+      title: 'are your sure??',
+      text: 'do you want to remove this farmer',
+      imageUrl: '../../images/invalid.svg',
+      imageHeight: 250,
+      imageAlt: 'delete rqst',
+      showCancelButton: true,
+      confirmButtonColor: '#ff5454',
+      cancelButtonColor: '#ff5454',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'Cancel'
+    }).then((result) => {
+      if (result.value) {
+        window.location.href = "../../includes/action.php?delete=" + value1;
+      }
+    })
+  }
+
+  function clicked1() {
+      var value1 = document.getElementById("farmerval1").name;
+      Swal.fire({
+        title: 'are your sure??',
+        text: 'do you want approve this farmer',
+        imageUrl: '../../images/confirmed.svg',
+        imageHeight: 250,
+        imageAlt: 'approve rqst',
+        showCancelButton: true,
+        confirmButtonColor: '#ff5454',
+        cancelButtonColor: '#ff5454',
+        confirmButtonText: 'Approve',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.value) {
+          window.location.href = "../../includes/action.php?approve=" + value1;
+        }
+      })
+    }
+
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6XkaPZ0poj76FV4fvv39OPnVHeFKV8C0&callback=initMap&libraries=&v=weekly" defer></script>

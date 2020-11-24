@@ -596,8 +596,8 @@
       Spices: {
         label: 'S'
       },
-      Fruits_and_Vegetable: {
-        label: 'F&V'
+      Fruits_and_vegetable: {
+        label: 'F/V'
       },
       Other: {
         label: 'O'
