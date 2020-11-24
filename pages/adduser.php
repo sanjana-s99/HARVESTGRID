@@ -10,6 +10,8 @@ include "../includes/adduser.php";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HarvestGrid Add-User</title>
 
+    <link rel='shortcut icon' type='image/x-icon' href='../images/favicon.svg' />
+
     <!-- Main css -->
     <link href="../assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -74,13 +76,7 @@ include "../includes/adduser.php";
                         </div>
                     </div>
                     <div class="row py-2">
-                        <div class="col-md-6 pt-md-0 form-group">
-                            <label for="pwd">Password:</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="user_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-                            <div class="valid-feedback">Valid.</div>
-                            <div class="invalid-feedback">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
-                        </div>
-                        <div class="col-md-6 pt-md-0 pt-3 form-group">
+                        <div class="col-md-12 pt-md-0 pt-3 form-group">
                             <label for="sel1">Account Type :</label>
                             <select class="form-control" id="sel1" name="user_role" placeholder="Select Your Product" require>
                                 <option value="S">DoA Staff</option>

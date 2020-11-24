@@ -25,6 +25,8 @@ require('db.php');
                 echo $_SESSION['login_details_id'];
                 setcookie("harvestgrid_user_name", $row['user_name'], time()+100000, "/","", 0); //set cookie to store user_name
                 header("Location: ../index.php"); // Redirect user to index.php
+            }else if($row['status']=='C'){
+                $val=300;
             }else{
                 $val=200;
             }
@@ -61,6 +63,25 @@ function show(){
                 imageAlt: 'not approved',
                 confirmButtonColor: '#ff5454',
                 confirmButtonText: 'Oh Okay',
+            })
+        };
+    </script>";//error message
+
+    }elseif($val==300){
+        echo "<script>
+        window.onload = function() {
+            Swal.fire({
+                title: '',
+                text: 'your need to change password immediately.',
+                imageUrl: '../images/passinstructionsent.svg',
+                imageHeight: 250,
+                imageAlt: 'need password change',
+                confirmButtonColor: '#ff5454',
+                confirmButtonText: 'Oh Okay',
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = 'forgetpass.php';
+                }
             })
         };
     </script>";//error message

@@ -15,6 +15,8 @@ include("includes/charts.php");
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+  <link rel='shortcut icon' type='image/x-icon' href='images/favicon.svg' />
+
   <!--  Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -468,8 +470,8 @@ include("includes/charts.php");
       Spices: {
         label: 'S'
       },
-      Fruits_and_Vegetable: {
-        label: 'F&V'
+      Fruits_and_vegetable: {
+        label: 'F/V'
       },
       Other: {
         label: 'O'
@@ -488,21 +490,15 @@ include("includes/charts.php");
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName('marker');
         Array.prototype.forEach.call(markers, function(markerElem) {
-          var id = markerElem.getAttribute('id');
-          var name = markerElem.getAttribute('name');
-          var address = markerElem.getAttribute('address');
           var type = markerElem.getAttribute('type');
           var point = new google.maps.LatLng(
             parseFloat(markerElem.getAttribute('lat')),
             parseFloat(markerElem.getAttribute('lng')));
 
           var infowincontent = document.createElement('div');
-          var strong = document.createElement('h5');
-          strong.textContent = name
+          var strong = document.createElement('h6');
+          strong.textContent = type
           infowincontent.appendChild(strong);
-          var text = document.createElement('p');
-          text.textContent = address
-          infowincontent.appendChild(text);
           var icon = customLabel[type] || {};
           var marker = new google.maps.Marker({
             map: map,

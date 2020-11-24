@@ -5,6 +5,7 @@ session_start();
 <html lang="en">
 
 <head>
+    <link rel='shortcut icon' type='image/x-icon' href='../images/favicon.svg' />
     <!-- Main css -->
     <link href="../assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">

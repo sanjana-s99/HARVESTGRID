@@ -15,9 +15,7 @@
         $user_email = stripslashes($_REQUEST['user_email']);
         $user_tp = stripslashes($_REQUEST['user_tp']);
         $user_email = mysqli_real_escape_string($con,$user_email);
-        $user_password = stripslashes($_REQUEST['user_password']);
-        $user_password = mysqli_real_escape_string($con,$user_password);
-        $user_password = password_hash($user_password, PASSWORD_DEFAULT);
+        $user_password = password_hash("newuser", PASSWORD_DEFAULT);
         $user_role = stripslashes($_REQUEST['user_role']);
 
         // get user birthyear from nic
@@ -48,7 +46,7 @@
             $val=1;
         }else{
             
-            $query = "INSERT into users (user_nic, user_name, user_password, user_email, user_tp, user_gender, user_age ,user_role, status) VALUES ('$user_nic' , '$user_name', '$user_password' , '$user_email', '$user_tp', '$user_gender' , '$user_age', '$user_role', 'A')"; //adding values to users table
+            $query = "INSERT into users (user_nic, user_name, user_password, user_email, user_tp, user_gender, user_age ,user_role, status) VALUES ('$user_nic' , '$user_name', '$user_password' , '$user_email', '$user_tp', '$user_gender' , '$user_age', '$user_role', 'C')"; //adding values to users table
             $result = mysqli_query($con,$query);
             if($result){            
                 $val=2;        

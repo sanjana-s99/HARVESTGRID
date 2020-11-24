@@ -158,7 +158,7 @@
         $output.='<p>Please be sure to copy the entire link onto your browser. The link will expire after 1 day for security reasons.</p>';
         $output.='<p>If you did not signup, ignore this email.</p>';   	
         $output.='<p>Thanks,</p>';
-        $output.='<p>Weuse Team</p>';
+        $output.='<p>HarvestGrid Team</p>';
         $body = $output; 
         $subject = "Verify Email - harvestgrid.com";
                         

@@ -15,7 +15,7 @@
 
   // Select all the rows in the markers table
   $query = "SELECT farmerrqst.weight, farmerrqst.date, farmerrqst.rqst_id, farmerrqst.image1, farmerrqst.status, users.user_name, users.user_crop, users.user_lat, users.user_lng FROM farmerrqst JOIN users ON farmerrqst.user_id = users.user_id WHERE farmerrqst.status = 'N'";
-  $result = mysqli_query($con, $query) or die(mysql_error());
+  $result = mysqli_query($con, $query) or die(mysqli_error($con));
 
   header("Content-type: text/xml");
 
@@ -42,4 +42,3 @@
 
   // End XML file
   echo '</markers>';
-?>

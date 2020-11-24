@@ -15,7 +15,7 @@
 
   // Select all the rows in the markers table
   $query = "SELECT * FROM users WHERE user_role = 'F'";
-  $result = mysqli_query($con,$query) or die(mysql_error());
+  $result = mysqli_query($con,$query) or die(mysqli_error($con));
 
   header("Content-type: text/xml");
 
@@ -27,9 +27,6 @@
   while ($row = mysqli_fetch_assoc($result)){
     // Add to XML document node
     echo '<marker ';
-    echo 'id="' . $row['user_id'] . '" ';
-    echo 'name="' . parseToXML($row['user_crop']) . '" ';
-    echo 'address="' . parseToXML($row['user_name']) . ' " ';
     echo 'lat="' . $row['user_lat'] . '" ';
     echo 'lng="' . $row['user_lng'] . '" ';
     echo 'type="' . $row['user_crop'] . '" ';
@@ -39,5 +36,3 @@
 
   // End XML file
   echo '</markers>';
-
-?>

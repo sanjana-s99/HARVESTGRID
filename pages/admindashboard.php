@@ -1,16 +1,17 @@
 <?php
-include("../includes/db.php");
-include("../includes/charts.php");
-session_start(); //starting session
-if (!isset($_SESSION["username"])) {
-  header("Location: ../pages/signin.php");
-}
-if ($_SESSION['user_role'] == "A")
-  $type = "Admin";
-elseif ($_SESSION['user_role'] == "S")
-  $type = "DoA Staff";
-elseif ($_SESSION['user_role'] == "K")
-  $type = "Kells Staff";
+  include("../includes/db.php");
+  include("../includes/charts.php");
+  session_start(); //starting session
+  if (!isset($_SESSION["username"])) {
+    header("Location: ../pages/signin.php");
+  }
+  $type = '';
+  if ($_SESSION['user_role'] == "A")
+    $type = "Admin";
+  elseif ($_SESSION['user_role'] == "S")
+    $type = "DoA Staff";
+  elseif ($_SESSION['user_role'] == "K")
+    $type = "Kells Staff";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +23,8 @@ elseif ($_SESSION['user_role'] == "K")
   <title>HarvestGrid Staff-Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+
+  <link rel='shortcut icon' type='image/x-icon' href='../images/favicon.svg' />
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
@@ -593,8 +596,8 @@ elseif ($_SESSION['user_role'] == "K")
       Spices: {
         label: 'S'
       },
-      Fruits_and_Vegetable: {
-        label: 'F&V'
+      Fruits_and_vegetable: {
+        label: 'F/V'
       },
       Other: {
         label: 'O'

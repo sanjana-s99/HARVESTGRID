@@ -3,12 +3,13 @@
 <hea<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Forget Password</title>
+	<title>Forget/Change Password</title>
 
 	<link href="../assets/css/style.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="../assets/css/formstyle.css" rel="stylesheet">
+	<link rel='shortcut icon' type='image/x-icon' href='../images/favicon.svg' />
 
 	</head>
 
@@ -131,7 +132,7 @@
 			} else {
 			?>
 				<div class="wrapper bg-white mt-sm-5">
-					<h4 class="pb-4 border-bottom">HarvestGrid Forget-Password</h4>
+					<h4 class="pb-4 border-bottom">HarvestGrid Forget/Change-Password</h4>
 					<form action="" method="post" name="reset">
 						<div class="py-2">
 							<div class="row py-2 form-group">

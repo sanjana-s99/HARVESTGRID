@@ -10,6 +10,8 @@ include "../includes/signin.php";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HarvestGrid Sign-In</title>
 
+    <link rel='shortcut icon' type='image/x-icon' href='../images/favicon.svg' />
+
     <!-- Main css -->
     <link href="../assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
