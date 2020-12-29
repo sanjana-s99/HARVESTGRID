@@ -211,7 +211,7 @@ if (!isset($_SESSION['user_id'])) {
       <section id="stats" class="features">
         <div class="container">
           <div class="section-title">
-            <h2>Statistics</h2>
+            <h2>Crop Requests</h2>
           </div>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>

@@ -348,22 +348,15 @@ include("includes/charts.php");
       <div class="row content">
         <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
+            Harvestgrid is a web application to solve common issue in our country.
+            when we search about that the department of agricultural of sri Lanka along with the keels are planning to launch a launch web site to develop a market and the farmers where the farmers can feed their harvest and keels staff can buy them.
+            
           </p>
-          <ul>
-            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-            <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-          </ul>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
           <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            any farmer can register to the system using their national id number and crop related details. 
           </p>
-          <a href="#" class="btn-learn-more">Learn More</a>
         </div>
       </div>
 
@@ -472,8 +465,8 @@ include("includes/charts.php");
 
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(7.927079, 79.861244),
-        zoom: 7
+        center: new google.maps.LatLng(7.1, 80.79),
+        zoom: 8
       });
       var infoWindow = new google.maps.InfoWindow;
 
