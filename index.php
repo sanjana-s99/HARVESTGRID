@@ -78,7 +78,7 @@ include("includes/charts.php");
         <div class="row">
           <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
             <h1 data-aos="fade-up">Grow your business with HarvestGrid</h1>
-            <h2 data-aos="fade-up" data-aos-delay="400">We are team of talanted designers making websites with Bootstrap</h2>
+            <h2 data-aos="fade-up" data-aos-delay="400">It is the brightest hope for everyone...</h2>
             <?php if (isset($_SESSION['username'])) { ?>
               <div data-aos="fade-up" data-aos-delay="800">
                 <a href="#services" class="btn-get-started scrollto">Get Started</a>
@@ -104,7 +104,7 @@ include("includes/charts.php");
                 <div class="count-box">
                   <i class="icofont-crop-plant"></i>
                   <span data-toggle="counter-up"><?php echo $rice; ?></span>
-                  <p><strong>Rice</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
+                  <p><strong>Rice</strong> is the seed of the grass species Oryza Stiva</p>
                 </div>
               </div>
 
@@ -112,7 +112,7 @@ include("includes/charts.php");
                 <div class="count-box">
                   <i class="icofont-tea"></i>
                   <span data-toggle="counter-up"><?php echo $tea; ?></span>
-                  <p><strong>Tea</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
+                  <p><strong>Tea</strong> an aromatic beverage commonly prepared by boiling water over cured leaves </p>
                 </div>
               </div>
 
@@ -120,7 +120,7 @@ include("includes/charts.php");
                 <div class="count-box">
                   <i class="icofont-coconut"></i>
                   <span data-toggle="counter-up"><?php echo $coconut; ?></span>
-                  <p><strong>Coconut</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
+                  <p><strong>Coconut</strong> is the fruit of the coconut palm. It's used for its water, milk, oil, and tasty meat</p>
                 </div>
               </div>
 
@@ -128,7 +128,7 @@ include("includes/charts.php");
                 <div class="count-box">
                   <i class="icofont-tree-alt"></i>
                   <span data-toggle="counter-up"><?php echo $spices; ?></span>
-                  <p><strong>Spices</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
+                  <p><strong>Spices</strong> is a seed, fruit, root, bark  primarily used for flavoring or coloring food</p>
                 </div>
               </div>
 
@@ -136,7 +136,7 @@ include("includes/charts.php");
                 <div class="count-box">
                   <i class="icofont-fruits"></i>
                   <span data-toggle="counter-up"><?php echo $vnf; ?></span>
-                  <p><strong>Fruits & Vegetable</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
+                  <p><strong>Fruits & Vegetable</strong> contain important vitamins, minerals and plant chemicals and also contain fibre</p>
                 </div>
               </div>
 
@@ -144,7 +144,7 @@ include("includes/charts.php");
                 <div class="count-box">
                   <i class="icofont-tree"></i>
                   <span data-toggle="counter-up"><?php echo $other; ?></span>
-                  <p><strong>Other</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut</p>
+                  <p><strong>Other</strong> </p>
                 </div>
               </div>
 
@@ -214,7 +214,7 @@ include("includes/charts.php");
 
           <div class="section-title" data-aos="fade-up">
             <h2>Services</h2>
-            <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fug</p>
+            <p>Well Organized for Well Satisfied</p>
           </div>
 
           <div class="row">
@@ -348,22 +348,15 @@ include("includes/charts.php");
       <div class="row content">
         <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
+            Harvestgrid is a web application to solve common issue in our country.
+            when we search about that the department of agricultural of sri Lanka along with the keels are planning to launch a launch web site to develop a market and the farmers where the farmers can feed their harvest and keels staff can buy them.
+            
           </p>
-          <ul>
-            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-            <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-            <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-          </ul>
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-up" data-aos-delay="300">
           <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            any farmer can register to the system using their national id number and crop related details. 
           </p>
-          <a href="#" class="btn-learn-more">Learn More</a>
         </div>
       </div>
 
@@ -381,14 +374,6 @@ include("includes/charts.php");
               <path class="breathing" d="M24.85 10.126c2.018-4.783 6.628-8.125 11.99-8.125 7.223 0 12.425 6.179 13.079 13.543 0 0 .353 1.828-.424 5.119-1.058 4.482-3.545 8.464-6.898 11.503L24.85 48 7.402 32.165c-3.353-3.038-5.84-7.021-6.898-11.503-.777-3.291-.424-5.119-.424-5.119C.734 8.179 5.936 2 13.159 2c5.363 0 9.673 3.343 11.691 8.126z" fill="#d75a4a"></path>
             </svg> in <strong>Sri Lanka</strong>.
           </div>
-        </div>
-        <div class="col-lg-6">
-          <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
-            <a href="#intro" class="scrollto">Home</a>
-            <a href="#about" class="scrollto">About</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-          </nav>
         </div>
       </div>
     </div>
@@ -480,8 +465,8 @@ include("includes/charts.php");
 
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
-        center: new google.maps.LatLng(7.927079, 79.861244),
-        zoom: 7
+        center: new google.maps.LatLng(7.1, 80.79),
+        zoom: 8
       });
       var infoWindow = new google.maps.InfoWindow;
 

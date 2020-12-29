@@ -211,7 +211,7 @@ if (!isset($_SESSION['user_id'])) {
       <section id="stats" class="features">
         <div class="container">
           <div class="section-title">
-            <h2>Statistics</h2>
+            <h2>Crop Requests</h2>
           </div>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
@@ -295,14 +295,6 @@ if (!isset($_SESSION['user_id'])) {
             <path class="breathing" d="M24.85 10.126c2.018-4.783 6.628-8.125 11.99-8.125 7.223 0 12.425 6.179 13.079 13.543 0 0 .353 1.828-.424 5.119-1.058 4.482-3.545 8.464-6.898 11.503L24.85 48 7.402 32.165c-3.353-3.038-5.84-7.021-6.898-11.503-.777-3.291-.424-5.119-.424-5.119C.734 8.179 5.936 2 13.159 2c5.363 0 9.673 3.343 11.691 8.126z" fill="#d75a4a"></path>
           </svg> in <strong>Sri Lanka</strong>.
         </div>
-      </div>
-      <div class="col-lg-6">
-        <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
-          <a href="#intro" class="scrollto">Home</a>
-          <a href="#about" class="scrollto">About</a>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-        </nav>
       </div>
     </div>
   </div>

@@ -32,8 +32,7 @@ include "../../includes/farmerrqst.php";
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
                     <li><a href="../../index.php">Home</a></li>
-                    <li class="active"><a href="../signup.php">Register</a></li>
-                    <li class="get-started"><a href="../signin.php">Sign In</a></li>
+                    <li class="get-started"><a href="../../includes/signout.php">Sign Out</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
 
