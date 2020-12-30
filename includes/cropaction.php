@@ -32,7 +32,7 @@
             }
             $query2 = "UPDATE farmerrqst SET quality = 'G' WHERE rqst_id = {$rqst_id}";
             mysqli_query($con, $query2);
-            if($g<10){
+            if($g<9){
                 $query3 = "UPDATE users SET user_rating = user_rating + 1 WHERE user_id = {$user_id}";
                 mysqli_query($con, $query3);
             }
@@ -51,7 +51,7 @@
             }
             $query2 = "UPDATE farmerrqst SET quality = 'P' WHERE rqst_id = {$rqst_id}";
             mysqli_query($con, $query2);
-            if($g>0){
+            if($g>1){
                 $query3 = "UPDATE users SET user_rating = user_rating - 1 WHERE user_id = {$user_id}";
                 mysqli_query($con, $query3);
             }
