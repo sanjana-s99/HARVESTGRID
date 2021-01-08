@@ -13,8 +13,12 @@
         $user_email = stripslashes($_REQUEST['user_email']);
         $user_tp = stripslashes($_REQUEST['user_tp']);
         $user_email = mysqli_real_escape_string($con,$user_email);
-        $img = $_FILES['img']['name'];
-        $img_temp = $_FILES['img']['tmp_name'];
+        if($_FILES['img']['name'] != ''){
+            $img = $_FILES['img']['name'];
+            $img_temp = $_FILES['img']['tmp_name'];
+        }else{
+            $img = "nopropic.webp";
+        }
 
         move_uploaded_file($img_temp,"../uploads/propic/$img");
 
@@ -138,4 +142,3 @@
         }
                         
     }
-?>

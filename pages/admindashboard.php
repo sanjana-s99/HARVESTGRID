@@ -1,17 +1,17 @@
 <?php
-  include("../includes/db.php");
-  include("../includes/charts.php");
-  session_start(); //starting session
-  if (!isset($_SESSION["username"])) {
-    header("Location: ../pages/signin.php");
-  }
-  $type = '';
-  if ($_SESSION['user_role'] == "A")
-    $type = "Admin";
-  elseif ($_SESSION['user_role'] == "S")
-    $type = "DoA Staff";
-  elseif ($_SESSION['user_role'] == "K")
-    $type = "Kells Staff";
+include("../includes/db.php");
+include("../includes/charts.php");
+session_start(); //starting session
+if (!isset($_SESSION["username"])) {
+  header("Location: ../pages/signin.php");
+}
+$type = '';
+if ($_SESSION['user_role'] == "A")
+  $type = "Admin";
+elseif ($_SESSION['user_role'] == "S")
+  $type = "DoA Staff";
+elseif ($_SESSION['user_role'] == "K")
+  $type = "Kells Staff";
 ?>
 <!DOCTYPE html>
 <html lang="en">

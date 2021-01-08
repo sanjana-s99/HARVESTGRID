@@ -113,7 +113,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <div class="valid-feedback">Valid.</div>
                         <div class="invalid-feedback">Please enter valid phone number.</div>
                     </div>
-                    <?php if ($img == "nopropic.webp") { ?>
+                    <?php if ($img != "nopropic.webp") { ?>
                         <div class="row py-2">
                             <label for="img">Profile Picture:</label>
                             <input type="file" class="form-control" id="file" placeholder="Add Image" name="img" required>
