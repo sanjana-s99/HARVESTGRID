@@ -50,7 +50,7 @@
 				else
 				{
 					$chat_message = $row['chat_message'];
-					$user_name = '<button type="button" class="btn btn-danger btn-xs remove_chat" id="'.$row['chat_message_id'].'">x</button>&nbsp;<b class="text-success">You</b>';
+					$user_name = '<button type="button" class="btn btn-danger btn-xs remove_chat" id="'.$row['chat_message_id'].'"><img src="https://img.icons8.com/windows/20/ffffff/delete-forever.png"/></button>&nbsp;<b class="text-success">You</b>';
 				}
 				
 
