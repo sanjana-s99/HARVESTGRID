@@ -1,3 +1,3 @@
 # HARVESTGRID
 
-webmaster password --> admin
+webmaster password --> newuser
